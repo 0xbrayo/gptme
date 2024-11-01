@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Evals &#8212; gptme</title>
+    <title>&lt;no title&gt; &#8212; gptme</title>
   
   
   
@@ -43,12 +43,10 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/asciinema-player_3.6.3.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'evals';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'computer-use-warning';</script>
     <link rel="icon" href="_static/logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="GitHub Bot" href="bot.html" />
-    <link rel="prev" title="Prompts" href="prompts.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -111,6 +109,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -171,10 +171,10 @@
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Reference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prompts.html">Prompts</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Evals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evals.html">Evals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bot.html">GitHub Bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arewetiny.html">Are we tiny?</a></li>
@@ -256,7 +256,7 @@
       
       
       
-      <li><a href="https://github.com/ErikBjare/gptme/edit/main/docs/evals.rst" target="_blank"
+      <li><a href="https://github.com/ErikBjare/gptme/edit/main/docs/computer-use-warning.rst" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +286,7 @@
       
       
       
-      <li><a href="_sources/evals.rst" target="_blank"
+      <li><a href="_sources/computer-use-warning.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -370,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Evals</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -379,11 +379,9 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-evals">Other evals</a></li>
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
+
             </nav>
         </div>
     </div>
@@ -394,64 +392,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="evals">
-<h1>Evals<a class="headerlink" href="#evals" title="Link to this heading">#</a></h1>
-<p>gptme provides LLMs with a wide variety of tools, but how well do models make use of them? Which tasks can they complete, and which ones do they struggle with? How far can they get on their own, without any human intervention?</p>
-<p>To answer these questions, we have created a evaluation suite that tests the capabilities of LLMs on a wide variety of tasks.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The evaluation suite is still under development, but the eval harness is mostly complete.</p>
+  <div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The computer use interface is experimental and has serious security implications.
+Please use with caution and see Anthropic’s documentation on <a class="reference external" href="https://docs.anthropic.com/en/docs/build-with-claude/computer-use">computer use</a> for additional guidance.</p>
 </div>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
-<p>You can run the simple <code class="docutils literal notranslate"><span class="pre">hello</span></code> eval with gpt-4o like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gptme-eval<span class="w"> </span>hello<span class="w"> </span>--model<span class="w"> </span>openai/gpt-4o
-</pre></div>
-</div>
-<p>However, we recommend running it in Docker to improve isolation and reproducibility:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>build-docker
-docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span><span class="s2">&quot;OPENAI_API_KEY=&lt;your api key&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/eval_results:/app/eval_results<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>gptme-eval<span class="w"> </span>hello<span class="w"> </span>--model<span class="w"> </span>openai/gpt-4o
-</pre></div>
-</div>
-</section>
-<section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h2>
-<p>Here are the results of the evals we have run so far:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ gptme-eval eval_results/*/eval_results.csv
-Model                                     hello           hello-patch     hello-ask       prime100        init-git         init-rust      whois-superuserlabs-ceo
-----------------------------------------  --------------  --------------  --------------  --------------  ---------------  -------------  -------------------------
-anthropic/claude-3-5-sonnet-20240620      ✅ 34/34 629tk  ✅ 34/34 540tk  ✅ 34/34 712tk  ✅ 34/34 974tk  ✅ 34/34 1110tk  ✅ 4/4 1504tk  🔶 3/4 1306tk
-anthropic/claude-3-haiku-20240307         ✅ 34/34 386tk  ✅ 34/34 377tk  ✅ 34/34 432tk  ❌ 6/34 787tk   🔶 24/34 851tk   🔶 3/4 670tk   ✅ 4/4 1535tk
-openai/gpt-4-turbo                        ✅ 3/3 255tk    ✅ 3/3 312tk    ✅ 3/3 376tk    ✅ 3/3 527tk    ✅ 4/4 590tk     ✅ 4/4 784tk   ✅ 6/7 819tk
-openai/gpt-4o                             ✅ 35/35 289tk  ✅ 35/35 301tk  ✅ 35/35 365tk  🔶 24/35 445tk  ✅ 35/35 719tk   ✅ 5/5 663tk   ✅ 5/5 1253tk
-openai/gpt-4o-mini                        ✅ 36/36 267tk  ✅ 36/36 314tk  ✅ 36/36 373tk  ✅ 36/36 587tk  ✅ 31/36 755tk   ✅ 6/6 813tk   ✅ 6/6 951tk
-openai/o1-mini                            ✅ 3/3 354tk    ✅ 3/3 431tk    ✅ 3/3 460tk    🔶 2/3 567tk    🔶 3/5 2222tk    🔶 1/5 1412tk  🔶 2/3 813tk
-openai/o1-preview                         ✅ 2/2 308tk    ✅ 2/2 570tk    🔶 1/2 549tk    ✅ 2/2 490tk    ✅ 3/3 823tk     ✅ 1/1 656tk   ✅ 1/1 1998tk
-google/gemini-flash-1.5                   ✅ 2/2 225tk    ✅ 2/2 401tk    ✅ 2/2 430tk    ❌ 0/2 296tk    ✅ 1/1 686tk     ❌ 0/1 661tk   ✅ 1/1 1014tk
-google/gemini-pro-1.5                     ✅ 1/1 341tk    ✅ 1/1 419tk    ✅ 1/1 456tk    ✅ 1/1 676tk    🔶 2/3 431tk     🔶 1/2 1016tk  ✅ 2/2 1308tk
-google/gemma-2-27b-it                     ✅ 1/1 288tk    ✅ 1/1 384tk    ✅ 1/1 446tk    ✅ 1/1 714tk    ✅ 1/1 570tk     ❌ 0/1 535tk   ❌ 0/1 235tk
-google/gemma-2-9b-it                      ❌ 0/2 186tk    ✅ 2/2 370tk    ✅ 2/2 368tk    ❌ 0/2 545tk    ✅ 1/1 492tk     ❌ 0/1 1730tk  ❌ 0/1 352tk
-meta-llama/llama-3.1-405b-instruct        🔶 18/35 158tk  🔶 21/35 341tk  🔶 20/35 288tk  🔶 22/35 316tk  🔶 13/35 306tk   🔶 2/5 255tk   ❌ 0/5 85tk
-meta-llama/llama-3.1-70b-instruct         ✅ 5/6 367tk    ✅ 5/6 424tk    ✅ 6/6 452tk    🔶 2/6 546tk    ✅ 5/6 813tk     🔶 3/4 682tk   🔶 2/3 1461tk
-meta-llama/llama-3.1-8b-instruct          ✅ 1/1 277tk    ✅ 1/1 441tk    ❌ 0/1 400tk    ❌ 0/1 5095tk   ✅ 1/1 2266tk    ❓ N/A         ❓ N/A
-meta-llama/llama-3.2-11b-vision-instruct  ✅ 2/2 352tk    ✅ 2/2 493tk    ❌ 0/2 479tk    ✅ 2/2 2643tk   ❓ N/A           ❓ N/A         ❓ N/A
-meta-llama/llama-3.2-90b-vision-instruct  🔶 2/4 237tk    🔶 2/4 288tk    🔶 3/4 336tk    🔶 1/4 233tk    ❓ N/A           ❓ N/A         ❓ N/A
-nousresearch/hermes-2-pro-llama-3-8b      ✅ 1/1 341tk    ❌ 0/1 4274tk   ❌ 0/1 3760tk   ❌ 0/1 659tk    ❓ N/A           ❓ N/A         ❓ N/A
-nousresearch/hermes-3-llama-3.1-405b      ✅ 2/2 317tk    ✅ 2/2 420tk    ✅ 2/2 325tk    ✅ 2/2 410tk    ✅ 1/1 821tk     ✅ 1/1 758tk   ✅ 1/1 1039tk
-nousresearch/hermes-3-llama-3.1-70b       ❌ 0/2 173tk    ❌ 0/2 187tk    ❌ 0/2 202tk    ❌ 0/2 177tk    ❓ N/A           ❓ N/A         ❓ N/A
-</pre></div>
-</div>
-<p>We are working on making the evals more robust, informative, and challenging.</p>
-</section>
-<section id="other-evals">
-<h2>Other evals<a class="headerlink" href="#other-evals" title="Link to this heading">#</a></h2>
-<p>We have considered running gptme on other evals, such as SWE-Bench, but have not yet done so.</p>
-<p>If you are interested in running gptme on other evals, drop a comment in the issues!</p>
-</section>
-</section>
 
 
                 </article>
@@ -464,24 +409,6 @@ nousresearch/hermes-3-llama-3.1-70b       ❌ 0/2 173tk    ❌ 0/2 187tk    ❌ 
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="prompts.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Prompts</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="bot.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">GitHub Bot</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -497,11 +424,9 @@ nousresearch/hermes-3-llama-3.1-70b       ❌ 0/2 173tk    ❌ 0/2 187tk    ❌ 
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-evals">Other evals</a></li>
+    <ul class="simple visible nav section-nav flex-column">
 </ul>
+
   </nav></div>
 
 </div></div>
