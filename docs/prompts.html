@@ -179,12 +179,14 @@
 <li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arewetiny.html">Are we tiny?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timeline.html">Timeline</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ErikBjare/gptme/releases">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">External</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ErikBjare/gptme">GitHub</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://discord.gg/NMaCmmkxWv">Discord</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://x.com/gptmeorg">X</a></li>
 </ul>
 
     </div>
@@ -381,12 +383,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.get_prompt"><code class="docutils literal notranslate"><span class="pre">get_prompt()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.get_system_distro"><code class="docutils literal notranslate"><span class="pre">get_system_distro()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_full"><code class="docutils literal notranslate"><span class="pre">prompt_full()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_gptme"><code class="docutils literal notranslate"><span class="pre">prompt_gptme()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_project"><code class="docutils literal notranslate"><span class="pre">prompt_project()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_short"><code class="docutils literal notranslate"><span class="pre">prompt_short()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_systeminfo"><code class="docutils literal notranslate"><span class="pre">prompt_systeminfo()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_timeinfo"><code class="docutils literal notranslate"><span class="pre">prompt_timeinfo()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_tools"><code class="docutils literal notranslate"><span class="pre">prompt_tools()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_user"><code class="docutils literal notranslate"><span class="pre">prompt_user()</span></code></a></li>
 </ul>
@@ -413,12 +415,6 @@ It is used to instruct the LLM about its role, how to use tools, and provide con
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="gptme.prompts.get_system_distro">
-<span class="sig-prename descclassname"><span class="pre">gptme.prompts.</span></span><span class="sig-name descname"><span class="pre">get_system_distro</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gptme.prompts.get_system_distro" title="Link to this definition">#</a></dt>
-<dd><p>Get the system distribution name.</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="gptme.prompts.prompt_full">
 <span class="sig-prename descclassname"><span class="pre">gptme.prompts.</span></span><span class="sig-name descname"><span class="pre">prompt_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gptme.prompts.prompt_full" title="Link to this definition">#</a></dt>
 <dd><p>Full prompt to start the conversation.</p>
@@ -439,17 +435,17 @@ It is used to instruct the LLM about its role, how to use tools, and provide con
 </dd>
 </dl>
 <p>Example output (interactive=True):</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>You are gptme v0.21.0, a general-purpose AI assistant powered by LLMs.
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>You are gptme v0.24.0, a general-purpose AI assistant powered by LLMs.
 You are designed to help users with programming tasks, such as writing code, debugging and learning new concepts.
 You can run code, execute terminal commands, and access the filesystem on the local machine.
 You will help the user with writing code, either from scratch or in existing projects.
-You will think step by step when solving a problem, in &lt;thinking&gt; tags.
+You will think step by step when solving a problem, in <span class="sb">`&lt;thinking&gt;`</span> tags.
 Break down complex tasks into smaller, manageable steps.
 
 You have the ability to self-correct.
 If you receive feedback that your output or actions were incorrect, you should:
 <span class="k">-</span><span class="w"> </span>acknowledge the mistake
-<span class="k">-</span><span class="w"> </span>analyze what went wrong in &lt;thinking&gt; tags
+<span class="k">-</span><span class="w"> </span>analyze what went wrong in <span class="sb">`&lt;thinking&gt;`</span> tags
 <span class="k">-</span><span class="w"> </span>provide a corrected response
 
 You should learn about the context needed to provide the best help,
@@ -469,7 +465,7 @@ Always consider the full range of your available tools and abilities when approa
 
 Maintain a professional and efficient communication style. Be concise but thorough in your explanations.
 
-Think before you answer, in &lt;thinking&gt; tags.
+Think before you answer, in <span class="sb">`&lt;thinking&gt;`</span> tags.
 
 You are in interactive mode. The user is available to provide feedback.
 You should show the user how you can use your tools to write code, interact with the terminal, and access the internet.
@@ -506,10 +502,16 @@ gptme is a CLI to interact with large language models in a Chat-style interface,
 <p>Example output:</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">## System Information</span>
 
-<span class="gs">**OS:**</span> Ubuntu 6.5.0-1025-azure
+<span class="gs">**OS:**</span> Ubuntu 22.04
 </pre></div>
 </div>
-<p>Tokens: 21</p>
+<p>Tokens: 14</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gptme.prompts.prompt_timeinfo">
+<span class="sig-prename descclassname"><span class="pre">gptme.prompts.</span></span><span class="sig-name descname"><span class="pre">prompt_timeinfo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gptme.prompts.prompt_timeinfo" title="Link to this definition">#</a></dt>
+<dd><p>Generate the current time prompt.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -540,6 +542,9 @@ cat<span class="w"> </span>file.txt
 <span class="gs">**Description:**</span> Write text to file
 
 <span class="gs">**Instructions:**</span> To write to a file, use a code block with the language tag: <span class="sb">`save &lt;path&gt;`</span>
+
+The path can be relative to the current directory, or absolute.
+If the current directory changes, the path will be relative to the new directory.
 
 <span class="gu">### Examples</span>
 
@@ -584,9 +589,11 @@ Try to keep the patch as small as possible. Avoid placeholders, as they may make
 To keep the patch small, try to scope the patch to imports/function/class.
 If the patch is large, consider using the save tool to rewrite the whole file.
 
+The $PATH parameter MUST be on the same line as the code block start, not on the line after.
+
 The patch block should be written in the following format:
 
-<span class="sb">```patch</span><span class="w"> </span>$FILENAME
+<span class="sb">```patch</span><span class="w"> </span>$PATH
 <span class="s">&lt;&lt;&lt;&lt;&lt;&lt;&lt; ORIGINAL</span>
 <span class="s">$ORIGINAL_CONTENT</span>
 <span class="s">=======</span>
@@ -598,17 +605,22 @@ The patch block should be written in the following format:
 <span class="gu">### Examples</span>
 
 
-<span class="k">&gt; </span><span class="ge">User: patch the file `hello.py` to ask for the name of the user</span>
-<span class="k">&gt; </span><span class="ge">Assistant:</span>
-<span class="sb">```patch</span><span class="w"> </span>hello.py
-<span class="s">&lt;&lt;&lt;&lt;&lt;&lt;&lt; ORIGINAL</span>
-<span class="s">def hello():</span>
-<span class="s">    print(&quot;Hello world&quot;)</span>
-<span class="s">=======</span>
-<span class="s">def hello():</span>
-<span class="s">    name = input(&quot;What is your name? &quot;)</span>
-<span class="s">    print(f&quot;Hello {name}&quot;)</span>
-<span class="s">&gt;&gt;&gt;&gt;&gt;&gt;&gt; UPDATED</span>
+<span class="k">&gt; </span><span class="ge">User: patch `src/hello.py` to ask for the name of the user</span>
+```src/hello.py
+def hello():
+    print(&quot;Hello world&quot;)
+
+if <span class="gs">__name__</span> == &quot;<span class="gs">__main__</span>&quot;:
+    hello()
+<span class="sb">```</span>
+<span class="sb">&gt; Assistant:</span>
+<span class="sb">```patch src/hello.py</span>
+<span class="sb">&lt;&lt;&lt;&lt;&lt;&lt;&lt; ORIGINAL</span>
+<span class="sb">    print(&quot;Hello world&quot;)</span>
+<span class="sb">=======</span>
+<span class="sb">    name = input(&quot;What is your name? &quot;)</span>
+<span class="sb">    print(f&quot;Hello {name}&quot;)</span>
+<span class="sb">&gt;&gt;&gt;&gt;&gt;&gt;&gt; UPDATED</span>
 <span class="sb">```</span>
 <span class="k">&gt; </span><span class="ge">System: Patch applied</span>
 
@@ -622,10 +634,10 @@ The shell will respond with the output of the execution.
 Do not use EOF/HereDoc syntax to send multiline commands, as the assistant will not be able to handle it.
 
 These programs are available, among others:
-<span class="k">-</span><span class="w"> </span>docker
 <span class="k">-</span><span class="w"> </span>apt-get
-<span class="k">-</span><span class="w"> </span>pandoc
 <span class="k">-</span><span class="w"> </span>git
+<span class="k">-</span><span class="w"> </span>docker
+<span class="k">-</span><span class="w"> </span>pandoc
 
 <span class="gu">### Examples</span>
 
@@ -869,6 +881,12 @@ gh<span class="w"> </span>run<span class="w"> </span>list<span class="w"> </span
 gh<span class="w"> </span>run<span class="w"> </span>view<span class="w"> </span><span class="nv">$RUN</span><span class="w"> </span>--repo<span class="w"> </span><span class="nv">$REPO</span><span class="w"> </span>--log
 <span class="sb">```</span>
 
+<span class="k">&gt; </span><span class="ge">User: wait for workflow to finish</span>
+<span class="k">&gt; </span><span class="ge">Assistant:</span>
+<span class="sb">```shell</span>
+gh<span class="w"> </span>run<span class="w"> </span>watch<span class="w"> </span><span class="nv">$RUN</span><span class="w"> </span>--repo<span class="w"> </span><span class="nv">$REPO</span>
+<span class="sb">```</span>
+
 
 <span class="gu">## chats</span>
 
@@ -963,22 +981,13 @@ The following functions are available in the REPL:
 
 <span class="gu">#### It can write an example and then execute it:</span>
 <span class="k">&gt; </span><span class="ge">User: compute fib 10</span>
-<span class="k">&gt; </span><span class="ge">Assistant: To compute the 10th Fibonacci number, we write a recursive function:</span>
+<span class="k">&gt; </span><span class="ge">Assistant: To compute the 10th Fibonacci number, we can execute this code:</span>
 <span class="sb">```ipython</span>
-
-<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="o">...</span>
-
-<span class="sb">```</span>
-Now, let&#39;s execute this code to get the 10th Fibonacci number:
-<span class="sb">```ipython</span>
-
 <span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">n</span>
     <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-
 <span class="sb">```</span>
 <span class="k">&gt; </span><span class="ge">System: Executed code block.</span>
 <span class="sb">```result</span>
@@ -988,7 +997,7 @@ Now, let&#39;s execute this code to get the 10th Fibonacci number:
 <span class="ge">*End of Tools List.*</span>
 </pre></div>
 </div>
-<p>Tokens: 3051</p>
+<p>Tokens: 3132</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1056,12 +1065,12 @@ No specific preferences set.
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.get_prompt"><code class="docutils literal notranslate"><span class="pre">get_prompt()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.get_system_distro"><code class="docutils literal notranslate"><span class="pre">get_system_distro()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_full"><code class="docutils literal notranslate"><span class="pre">prompt_full()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_gptme"><code class="docutils literal notranslate"><span class="pre">prompt_gptme()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_project"><code class="docutils literal notranslate"><span class="pre">prompt_project()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_short"><code class="docutils literal notranslate"><span class="pre">prompt_short()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_systeminfo"><code class="docutils literal notranslate"><span class="pre">prompt_systeminfo()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_timeinfo"><code class="docutils literal notranslate"><span class="pre">prompt_timeinfo()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_tools"><code class="docutils literal notranslate"><span class="pre">prompt_tools()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.prompts.prompt_user"><code class="docutils literal notranslate"><span class="pre">prompt_user()</span></code></a></li>
 </ul>

@@ -10,19 +10,25 @@ To see example output without running the commands yourself, check out the :doc:
     gptme 'write a web app to particles.html which shows off an impressive and colorful particle effect using three.js'
     gptme 'render mandelbrot set to mandelbrot.png'
 
-    # chaining prompts
-    gptme 'show me something cool in the python repl' - 'something cooler' - 'something even cooler'
-
-    # stdin
-    git diff | gptme 'complete the TODOs in this diff'
-    make test | gptme 'fix the failing tests'
-
-    # from a file
+    # files
     gptme 'summarize this' README.md
     gptme 'refactor this' main.py
+    gptme 'what do you see?' image.png  # vision
 
-    # it can read files using tools, if contents not provided in prompt
+    # stdin
+    git status -vv | gptme 'fix TODOs'
+    git status -vv | gptme 'commit'
+    make test | gptme 'fix the failing tests'
+
+    # if path not directly provided in prompt, it can read files using tools
     gptme 'suggest improvements to my vimrc'
+    gptme 'take a screenshot and tell me what you see'
+
+    # can read URLs (if browser tool is available)
+    gptme 'implement this' https://github.com/ErikBjare/gptme/issues/286
+
+    # chaining prompts
+    gptme 'show me something cool in the python repl' - 'something cooler' - 'something even cooler'
 
 Do you have a cool example? Share it with us in the `Discussions <https://github.com/ErikBjare/gptme/discussions>`_!
 
@@ -38,56 +44,3 @@ This should make it first write snake.py, then make the change in a following pr
     gptme --non-interactive --no-confirm 'create a snake game using curses in snake.py, dont run it' '-' 'make the snake green and the apple red'
 
 The '-' is special "multiprompt" syntax that tells the assistant to wait for the assistant to finish work on the next prompt (run until no more tool calls) before continuing. For more such non-interactive examples, see :doc:`automation`.
-
-
-.. rubric:: Generate Commit Messages
-
-Generate meaningful commit messages based on your git diff:
-
-.. code-block:: bash
-
-   msg_file=$(mktemp)
-   git diff --cached | gptme --non-interactive "Write a concise, meaningful commit message for this diff to `$msg_file`.
-
-   Format: <type>: <subject>
-   Where type is one of: feat, fix, docs, style, refactor, test, chore, build";
-
-   git commit -F "$msg_file"
-
-
-.. rubric:: Generate Documentation
-
-Generate docstrings for all functions in a file:
-
-.. code-block:: bash
-
-   gptme --non-interactive "Patch these files to include concise docstrings for all functions, skip functions that already have docstrings. Include: brief description, parameters." $@
-
-These examples demonstrate how gptme can be used to create simple yet powerful automation tools. Each script can be easily customized and expanded to fit specific project needs.
-
-.. rubric:: Computer Use Examples
-
-Using the computer tool for GUI automation and desktop interaction (requires running the server with computer use support):
-
-.. code-block:: bash
-
-    # Start server with computer use support
-    docker run -p 5000:5000 -p 8080:8080 -p 6080:6080 ghcr.io/erikbjare/gptme:latest-server
-
-    # Then in another terminal:
-
-    # Open and interact with an application
-    gptme 'open firefox and navigate to example.com'
-
-    # GUI automation with visual feedback
-    gptme 'create a simple drawing in xpaint'
-
-    # Desktop automation with keyboard/mouse
-    gptme 'open calculator and compute 15 * 23'
-
-The computer use interface at http://localhost:8080 provides a split view with:
-- Chat interface on the left
-- Desktop view on the right
-- Controls for toggling interaction mode
-
-This enables complex GUI automation tasks with visual feedback and confirmation.
