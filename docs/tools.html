@@ -16,27 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/asciinema-player_3.6.3.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3a28e17f" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
@@ -48,9 +51,10 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Configuration" href="config.html" />
-    <link rel="prev" title="Demos" href="demos.html" />
+    <link rel="prev" title="Projects" href="projects.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -66,19 +70,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -86,7 +79,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -94,8 +86,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -111,7 +103,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -141,33 +134,34 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="gptme - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="gptme - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="gptme - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automation.html">Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">Projects</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="providers.html">Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agents.html">Agents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automation.html">Automation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Reference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
@@ -179,6 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arewetiny.html">Are we tiny?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timeline.html">Timeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ErikBjare/gptme/releases">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
@@ -341,24 +336,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -453,8 +440,9 @@ document.write(`
 <h2>Shell<a class="headerlink" href="#shell" title="Link to this heading">#</a></h2>
 <p>The assistant can execute shell commands with bash by outputting code blocks with <cite>shell</cite> as the language.</p>
 <p class="rubric">Instructions</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>When you send a message containing bash code, it will be executed in a stateful bash shell.
-The shell will respond with the output of the execution.
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>The given command will be executed in a stateful bash shell.
+The shell tool will respond with the output of the execution.
+
 Do not use EOF/HereDoc syntax to send multiline commands, as the assistant will not be able to handle it.
 
 These programs are available, among others:
@@ -586,8 +574,26 @@ Scaffolding project in ./fancy-project...
 </tr>
 </table><dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">gptme.tools.shell.</span></span><span class="sig-name descname"><span class="pre">execute_shell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.shell.</span></span><span class="sig-name descname"><span class="pre">execute_shell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
 <dd><p>Executes a shell command and returns the output.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.shell.</span></span><span class="sig-name descname"><span class="pre">execute_shell_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Execute shell command and format output.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.shell.</span></span><span class="sig-name descname"><span class="pre">get_shell_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span></dt>
+<dd><p>Get the shell command from code/args/kwargs.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.shell.</span></span><span class="sig-name descname"><span class="pre">preview_shell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span></dt>
+<dd><p>Prepare preview for shell command.</p>
 </dd></dl>
 
 </section>
@@ -596,13 +602,12 @@ Scaffolding project in ./fancy-project...
 <p>The assistant can execute Python code blocks.</p>
 <p>It uses IPython to do so, and persists the IPython instance between calls to give a REPL-like experience.</p>
 <p class="rubric">Instructions</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>To execute Python code in an interactive IPython session, send a codeblock using the <span class="sb">`ipython`</span> language tag.
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Use this tool to execute Python code in an interactive IPython session.
 It will respond with the output and result of the execution.
-If you first write the code in a normal python codeblock, remember to also execute it with the ipython codeblock.
 </pre></div>
 </div>
 <p class="rubric">Examples</p>
-<p>Results of the last expression will be displayed, IPython-style:</p>
+<p>Result of the last expression will be returned</p>
 <table style="width: 100%; margin-bottom: 1em">
   
 <tr>
@@ -627,7 +632,7 @@ If you first write the code in a normal python codeblock, remember to also execu
 </pre></div></pre>
   </td>
 </tr>
-</table><p>It can write an example and then execute it:</p>
+</table><p>Write a function and call it</p>
 <table style="width: 100%; margin-bottom: 1em">
   
 <tr>
@@ -639,7 +644,7 @@ If you first write the code in a normal python codeblock, remember to also execu
 <tr>
   <td style="text-align: right; padding: 0 1em 0 1em; width: 0.1%; font-weight: bold; color: #44cc44">Assistant</td>
   <td>
-    <pre style="margin-right: 1em; padding: 5px; margin-bottom: 0.5em; white-space: pre-wrap;">To compute the 10th Fibonacci number, we can execute this code:<div style="opacity: 0.8;"><div style="display: inline-block; margin-bottom: -.5px; margin-top: 1em; border: 0 #888 solid; border-width: 1px 1px 0 1px; border-radius: 3px 3px 0 0; padding: 0.3em 0.6em; font-size: 0.7em; background-color: #000; color: #FFF">ipython</div>
+    <pre style="margin-right: 1em; padding: 5px; margin-bottom: 0.5em; white-space: pre-wrap;">To compute the 10th Fibonacci number, we can run the following code:<div style="opacity: 0.8;"><div style="display: inline-block; margin-bottom: -.5px; margin-top: 1em; border: 0 #888 solid; border-width: 1px 1px 0 1px; border-radius: 3px 3px 0 0; padding: 0.3em 0.6em; font-size: 0.7em; background-color: #000; color: #FFF">ipython</div>
 <pre style="background-color: #000; color: #ccc; margin-right: 1em; margin-top: 0; padding: 5px; margin-bottom: 0.5em; overflow: scroll;">def fib(n):
     if n <= 1:
         return n
@@ -658,7 +663,7 @@ fib(10)
 </tr>
 </table><dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">gptme.tools.python.</span></span><span class="sig-name descname"><span class="pre">execute_python</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">code:</span> <span class="pre">str,</span> <span class="pre">args:</span> <span class="pre">list[str],</span> <span class="pre">confirm:</span> <span class="pre">~collections.abc.Callable[[str],</span> <span class="pre">bool]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.python.</span></span><span class="sig-name descname"><span class="pre">execute_python</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">code:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None,</span> <span class="pre">args:</span> <span class="pre">list[str]</span> <span class="pre">|</span> <span class="pre">None,</span> <span class="pre">kwargs:</span> <span class="pre">dict[str,</span> <span class="pre">str]</span> <span class="pre">|</span> <span class="pre">None,</span> <span class="pre">confirm:</span> <span class="pre">~collections.abc.Callable[[str],</span> <span class="pre">bool]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
 <dd><p>Executes a python codeblock and returns the output.</p>
 </dd></dl>
 
@@ -798,7 +803,7 @@ Available commands:
 </tr>
 </table><dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">gptme.tools.tmux.</span></span><span class="sig-name descname"><span class="pre">execute_tmux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.tmux.</span></span><span class="sig-name descname"><span class="pre">execute_tmux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
 <dd><p>Executes a command in tmux and returns the output.</p>
 </dd></dl>
 
@@ -889,7 +894,7 @@ Available commands:
 <h2>Read<a class="headerlink" href="#read" title="Link to this heading">#</a></h2>
 <p>Read the contents of a file.</p>
 <p class="rubric">Instructions</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Read files using <span class="sb">`cat`</span>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Read the content of the given file. Use the <span class="sb">`cat`</span> command with the <span class="sb">`shell`</span> tool.
 </pre></div>
 </div>
 <p class="rubric">Examples</p>
@@ -914,7 +919,7 @@ Available commands:
 <h2>Save<a class="headerlink" href="#save" title="Link to this heading">#</a></h2>
 <p>Gives the assistant the ability to save whole files, or append to them.</p>
 <p class="rubric">Instructions</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>To write to a file, use a code block with the language tag: <span class="sb">`save &lt;path&gt;`</span>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Create or overwrite a file with the given content.
 
 The path can be relative to the current directory, or absolute.
 If the current directory changes, the path will be relative to the new directory.
@@ -926,7 +931,13 @@ If the current directory changes, the path will be relative to the new directory
 <tr>
   <td style="text-align: right; padding: 0 1em 0 1em; width: 0.1%; font-weight: bold; color: #5555cc;">User</td>
   <td>
-    <pre style="margin-right: 1em; padding: 5px; margin-bottom: 0.5em; white-space: pre-wrap;">write a hello world script to hello.py<div style="opacity: 0.8;"><div style="display: inline-block; margin-bottom: -.5px; margin-top: 1em; border: 0 #888 solid; border-width: 1px 1px 0 1px; border-radius: 3px 3px 0 0; padding: 0.3em 0.6em; font-size: 0.7em; background-color: #000; color: #FFF">save hello.py</div>
+    <pre style="margin-right: 1em; padding: 5px; margin-bottom: 0.5em; white-space: pre-wrap;">write a hello world script to hello.py</pre>
+  </td>
+</tr>
+<tr>
+  <td style="text-align: right; padding: 0 1em 0 1em; width: 0.1%; font-weight: bold; color: #44cc44">Assistant</td>
+  <td>
+    <pre style="margin-right: 1em; padding: 5px; margin-bottom: 0.5em; white-space: pre-wrap;"><div style="opacity: 0.8;"><div style="display: inline-block; margin-bottom: -.5px; margin-top: 1em; border: 0 #888 solid; border-width: 1px 1px 0 1px; border-radius: 3px 3px 0 0; padding: 0.3em 0.6em; font-size: 0.7em; background-color: #000; color: #FFF">save hello.py</div>
 <pre style="background-color: #000; color: #ccc; margin-right: 1em; margin-top: 0; padding: 5px; margin-bottom: 0.5em; overflow: scroll;">print("Hello world")
 </pre></div></pre>
   </td>
@@ -942,7 +953,13 @@ If the current directory changes, the path will be relative to the new directory
 <tr>
   <td style="text-align: right; padding: 0 1em 0 1em; width: 0.1%; font-weight: bold; color: #5555cc;">User</td>
   <td>
-    <pre style="margin-right: 1em; padding: 5px; margin-bottom: 0.5em; white-space: pre-wrap;">make it all-caps<div style="opacity: 0.8;"><div style="display: inline-block; margin-bottom: -.5px; margin-top: 1em; border: 0 #888 solid; border-width: 1px 1px 0 1px; border-radius: 3px 3px 0 0; padding: 0.3em 0.6em; font-size: 0.7em; background-color: #000; color: #FFF">save hello.py</div>
+    <pre style="margin-right: 1em; padding: 5px; margin-bottom: 0.5em; white-space: pre-wrap;">make it all-caps</pre>
+  </td>
+</tr>
+<tr>
+  <td style="text-align: right; padding: 0 1em 0 1em; width: 0.1%; font-weight: bold; color: #44cc44">Assistant</td>
+  <td>
+    <pre style="margin-right: 1em; padding: 5px; margin-bottom: 0.5em; white-space: pre-wrap;"><div style="opacity: 0.8;"><div style="display: inline-block; margin-bottom: -.5px; margin-top: 1em; border: 0 #888 solid; border-width: 1px 1px 0 1px; border-radius: 3px 3px 0 0; padding: 0.3em 0.6em; font-size: 0.7em; background-color: #000; color: #FFF">save hello.py</div>
 <pre style="background-color: #000; color: #ccc; margin-right: 1em; margin-top: 0; padding: 5px; margin-bottom: 0.5em; overflow: scroll;">print("HELLO WORLD")
 </pre></div></pre>
   </td>
@@ -954,7 +971,7 @@ If the current directory changes, the path will be relative to the new directory
   </td>
 </tr>
 </table><p class="rubric">Instructions</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>To append to a file, use a code block with the language tag: <span class="sb">`append &lt;path&gt;`</span>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Append the given content to a file.`.
 </pre></div>
 </div>
 <p class="rubric">Examples</p>
@@ -982,14 +999,38 @@ If the current directory changes, the path will be relative to the new directory
 </tr>
 </table><dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">gptme.tools.save.</span></span><span class="sig-name descname"><span class="pre">execute_append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.save.</span></span><span class="sig-name descname"><span class="pre">execute_append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
 <dd><p>Append code to a file.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">gptme.tools.save.</span></span><span class="sig-name descname"><span class="pre">execute_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.save.</span></span><span class="sig-name descname"><span class="pre">execute_append_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Actual append implementation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.save.</span></span><span class="sig-name descname"><span class="pre">execute_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
 <dd><p>Save code to a file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.save.</span></span><span class="sig-name descname"><span class="pre">execute_save_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Actual save implementation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.save.</span></span><span class="sig-name descname"><span class="pre">preview_append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Prepare preview content for append operation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.save.</span></span><span class="sig-name descname"><span class="pre">preview_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Prepare preview content for save operation.</p>
 </dd></dl>
 
 </section>
@@ -1000,23 +1041,11 @@ If the current directory changes, the path will be relative to the new directory
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>To patch/modify files, we use an adapted version of git conflict markers.
 
 This can be used to edit files, without having to rewrite the whole file.
-Only one patch block can be written per codeblock. Extra ORIGINAL/UPDATED blocks will be ignored.
+Only one patch block can be written per tool use. Extra ORIGINAL/UPDATED blocks will be ignored.
 Try to keep the patch as small as possible. Avoid placeholders, as they may make the patch fail.
 
 To keep the patch small, try to scope the patch to imports/function/class.
 If the patch is large, consider using the save tool to rewrite the whole file.
-
-The $PATH parameter MUST be on the same line as the code block start, not on the line after.
-
-The patch block should be written in the following format:
-
-<span class="sb">```patch</span><span class="w"> </span>$PATH
-<span class="s">&lt;&lt;&lt;&lt;&lt;&lt;&lt; ORIGINAL</span>
-<span class="s">$ORIGINAL_CONTENT</span>
-<span class="s">=======</span>
-<span class="s">$UPDATED_CONTENT</span>
-<span class="s">&gt;&gt;&gt;&gt;&gt;&gt;&gt; UPDATED</span>
-<span class="sb">```</span>
 </pre></div>
 </div>
 <p class="rubric">Examples</p>
@@ -1079,8 +1108,20 @@ Note that a minimal diff isn’t necessarily a unique diff.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">gptme.tools.patch.</span></span><span class="sig-name descname"><span class="pre">execute_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.patch.</span></span><span class="sig-name descname"><span class="pre">execute_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">code:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None,</span> <span class="pre">args:</span> <span class="pre">list[str]</span> <span class="pre">|</span> <span class="pre">None,</span> <span class="pre">kwargs:</span> <span class="pre">dict[str,</span> <span class="pre">str]</span> <span class="pre">|</span> <span class="pre">None,</span> <span class="pre">confirm:</span> <span class="pre">~collections.abc.Callable[[str],</span> <span class="pre">bool]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
 <dd><p>Applies the patch.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.patch.</span></span><span class="sig-name descname"><span class="pre">execute_patch_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="api.html#gptme.message.Message" title="gptme.message.Message"><span class="pre">Message</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Actual patch implementation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">gptme.tools.patch.</span></span><span class="sig-name descname"><span class="pre">preview_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Prepare preview content for patch operation.</p>
 </dd></dl>
 
 </section>
@@ -1110,12 +1151,8 @@ Note that a minimal diff isn’t necessarily a unique diff.</p>
 <p>This is an experimental feature. It needs some work to be more robust and useful.</p>
 </div>
 <p>To use the browser tool, you need to have the <cite>playwright</cite> Python package installed along with gptme, which you can install with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipx<span class="w"> </span>install<span class="w"> </span>gptme<span class="o">[</span>browser<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipx<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;gptme[browser]&#39;</span>
 gptme<span class="w"> </span><span class="s1">&#39;/shell playwright install chromium&#39;</span>
-</pre></div>
-</div>
-<p class="rubric">Instructions</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>To browse the web, you can use the <span class="sb">`read_url`</span>, <span class="sb">`search`</span>, and <span class="sb">`screenshot_url`</span> functions in Python.
 </pre></div>
 </div>
 <p class="rubric">Examples</p>
@@ -1277,10 +1314,6 @@ gptme<span class="w"> </span><span class="s1">&#39;/shell playwright install chr
 <section id="chats">
 <h2>Chats<a class="headerlink" href="#chats" title="Link to this heading">#</a></h2>
 <p>List, search, and summarize past conversation logs.</p>
-<p class="rubric">Instructions</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>The chats tool allows you to list, search, and summarize past conversation logs.
-</pre></div>
-</div>
 <p class="rubric">Examples</p>
 <p>Search for a specific topic in past conversations</p>
 <table style="width: 100%; margin-bottom: 1em">
@@ -1405,7 +1438,7 @@ Similar to Anthropic’s computer use demo, but integrated with gptme’s archit
 <p>The tool automatically handles screen resolution scaling to ensure optimal performance
 with LLM vision capabilities.</p>
 <p class="rubric">Instructions</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Use this tool to interact with the computer through X11.
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>You can interact with the computer through X11 with the <span class="sb">`computer`</span> Python function.
 Available actions:
 <span class="k">-</span><span class="w"> </span>key: Send key sequence (e.g., &quot;Return&quot;, &quot;Control_L+c&quot;)
 <span class="k">-</span><span class="w"> </span>type: Type text with realistic delays
@@ -1686,12 +1719,12 @@ Functions are documented using docstrings...</pre>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="demos.html"
+       href="projects.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Demos</p>
+        <p class="prev-next-title">Projects</p>
       </div>
     </a>
     <a class="right-next"
@@ -1710,7 +1743,8 @@ Functions are documented using docstrings...</pre>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1780,8 +1814,8 @@ By Erik Bjäreholt
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

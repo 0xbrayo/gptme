@@ -16,27 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/asciinema-player_3.6.3.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3a28e17f" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
@@ -51,6 +54,7 @@
     <link rel="prev" title="Finetuning" href="finetuning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -66,19 +70,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -86,7 +79,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -94,8 +86,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -111,7 +103,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -141,33 +134,34 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="gptme - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="gptme - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="gptme - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automation.html">Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">Projects</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="providers.html">Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agents.html">Agents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automation.html">Automation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Reference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
@@ -179,6 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Are we tiny?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timeline.html">Timeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ErikBjare/gptme/releases">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
@@ -341,24 +336,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -427,15 +414,15 @@ This is a major goal of the project, and it is important to keep in mind that th
 <h2>Startup time<a class="headerlink" href="#startup-time" title="Link to this heading">#</a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ make bench-importtime
 ...
-     344538 | gptme
-     594836 |       openai._models
-     597844 |     openai.types.batch
-     652789 |   openai.types
-     948932 | openai
+     341007 | gptme
+     478100 |       openai._models
+     481170 |     openai.types.batch
+     536290 |   openai.types
+     829280 | openai
 
-real	0m2.066s
-user	0m1.845s
-sys	0m0.208s
+real	0m1.907s
+user	0m1.715s
+sys	0m0.207s
 make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 </pre></div>
 </div>
@@ -447,47 +434,51 @@ make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ make cloc-core
 make[2]: Entering directory &#39;/home/runner/work/gptme/gptme&#39;
 cloc gptme/*.py gptme/llm/*.py gptme/util/*.py gptme/tools/__init__.py gptme/tools/base.py --by-file
-      30 text files.
-classified 30 files
-      30 unique files.                              
+      34 text files.
+classified 34 files
+      34 unique files.                              
        0 files ignored.
 
-github.com/AlDanial/cloc v 1.90  T=0.04 s (772.0 files/s, 135505.2 lines/s)
+github.com/AlDanial/cloc v 1.90  T=0.05 s (751.2 files/s, 143753.4 lines/s)
 ---------------------------------------------------------------------------------
 File                                          blank        comment           code
 ---------------------------------------------------------------------------------
-gptme/logmanager.py                              70             55            290
-gptme/util/__init__.py                           66             29            290
-gptme/chat.py                                    50             75            275
-gptme/cli.py                                     50             41            260
+gptme/tools/base.py                              91             73            344
+gptme/logmanager.py                              73             63            320
+gptme/chat.py                                    54             88            309
+gptme/cli.py                                     54             41            287
+gptme/llm/llm_openai.py                          59             26            239
 gptme/ncurses.py                                 39              5            238
+gptme/llm/llm_anthropic.py                       51             18            219
+gptme/llm/__init__.py                            47             39            208
+gptme/message.py                                 47             58            207
 gptme/commands.py                                18             18            204
-gptme/message.py                                 45             57            201
-gptme/llm/__init__.py                            47             39            190
-gptme/llm/llm_openai.py                          41             21            172
+gptme/util/context.py                            49             59            202
+gptme/util/__init__.py                           41             21            176
+gptme/util/ask_execute.py                        47             45            174
 gptme/util/cli.py                                48             28            161
-gptme/llm/llm_anthropic.py                       39             13            142
-gptme/tools/base.py                              44             59            139
-gptme/prompts.py                                 53             77            136
-gptme/llm/models.py                              24             12            133
+gptme/llm/models.py                              24             12            150
+gptme/prompts.py                                 56             80            141
 gptme/llm/llm_openai_models.py                    3              9            132
-gptme/config.py                                  32             13            107
-gptme/tools/__init__.py                          23             13            106
-gptme/export.py                                  17             25             86
-gptme/util/readline.py                           31             24             83
-gptme/init.py                                    25             18             76
-gptme/reduce.py                                  24             32             73
+gptme/tools/__init__.py                          23             20            121
+gptme/config.py                                  32             13            108
+gptme/util/readline.py                           31             24             87
+gptme/util/export.py                             17             25             86
+gptme/init.py                                    26             20             78
+gptme/util/reduce.py                             24             32             73
+gptme/util/generate_name.py                       5              6             69
 gptme/codeblock.py                               13             10             64
-gptme/clipboard.py                                8              2             35
+gptme/util/cost.py                               11             20             40
+gptme/util/clipboard.py                           8              2             35
 gptme/dirs.py                                    15              6             22
-gptme/useredit.py                                12             13             21
-gptme/interrupt.py                               13             14             20
+gptme/util/useredit.py                           12             13             21
+gptme/util/interrupt.py                          13             14             20
 gptme/constants.py                                4             12             14
 gptme/__init__.py                                 1              0              8
 gptme/__version__.py                              2              0              7
 gptme/__main__.py                                 1              0              3
 ---------------------------------------------------------------------------------
-SUM:                                            858            720           3688
+SUM:                                           1039            900           4567
 ---------------------------------------------------------------------------------
 make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 </pre></div>
@@ -503,17 +494,17 @@ classified 5 files
        5 unique files.                              
        0 files ignored.
 
-github.com/AlDanial/cloc v 1.90  T=0.01 s (419.9 files/s, 85411.2 lines/s)
+github.com/AlDanial/cloc v 1.90  T=0.01 s (393.5 files/s, 97269.3 lines/s)
 ---------------------------------------------------------------------------------
 File                                          blank        comment           code
 ---------------------------------------------------------------------------------
-gptme/llm/__init__.py                            47             39            190
-gptme/llm/llm_openai.py                          41             21            172
-gptme/llm/llm_anthropic.py                       39             13            142
-gptme/llm/models.py                              24             12            133
+gptme/llm/llm_openai.py                          59             26            239
+gptme/llm/llm_anthropic.py                       51             18            219
+gptme/llm/__init__.py                            47             39            208
+gptme/llm/models.py                              24             12            150
 gptme/llm/llm_openai_models.py                    3              9            132
 ---------------------------------------------------------------------------------
-SUM:                                            154             94            769
+SUM:                                            184            104            948
 ---------------------------------------------------------------------------------
 make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 </pre></div>
@@ -529,32 +520,32 @@ classified 20 files
       20 unique files.                              
        0 files ignored.
 
-github.com/AlDanial/cloc v 1.90  T=0.03 s (777.8 files/s, 125150.9 lines/s)
+github.com/AlDanial/cloc v 1.90  T=0.03 s (579.3 files/s, 108507.3 lines/s)
 -------------------------------------------------------------------------------------
 File                                              blank        comment           code
 -------------------------------------------------------------------------------------
-gptme/tools/shell.py                                 61             63            273
+gptme/tools/base.py                                  91             73            344
+gptme/tools/shell.py                                 77             69            320
+gptme/tools/patch.py                                 43             56            180
+gptme/tools/tmux.py                                  45             62            172
 gptme/tools/_browser_playwright.py                   58             28            165
-gptme/tools/computer.py                              53             84            155
-gptme/tools/tmux.py                                  39             62            152
-gptme/tools/patch.py                                 40             50            151
-gptme/tools/base.py                                  44             59            139
-gptme/tools/python.py                                47             49            129
+gptme/tools/save.py                                  32             38            162
+gptme/tools/computer.py                              55             84            156
+gptme/tools/python.py                                49             48            132
+gptme/tools/__init__.py                              23             20            121
 gptme/tools/_rag_context.py                          51             28            116
-gptme/tools/__init__.py                              23             13            106
-gptme/tools/subagent.py                              37             27             99
-gptme/tools/chats.py                                 32             36             94
-gptme/tools/save.py                                  26             36             79
-gptme/tools/browser.py                               27             49             59
-gptme/tools/rag.py                                   39             50             56
+gptme/tools/subagent.py                              37             29            101
+gptme/tools/chats.py                                 32             34             93
+gptme/tools/browser.py                               27             47             58
+gptme/tools/rag.py                                   40             50             57
 gptme/tools/_browser_lynx.py                          9             13             30
-gptme/tools/screenshot.py                            11              8             28
-gptme/tools/youtube.py                               10              3             27
-gptme/tools/gh.py                                    12             21             15
-gptme/tools/vision.py                                 7              5             14
-gptme/tools/read.py                                   3              8             10
+gptme/tools/screenshot.py                            11              8             27
+gptme/tools/youtube.py                               10              1             26
+gptme/tools/gh.py                                    14             21             16
+gptme/tools/vision.py                                 8              7             15
+gptme/tools/read.py                                   6              8             13
 -------------------------------------------------------------------------------------
-SUM:                                                629            692           1897
+SUM:                                                718            724           2304
 -------------------------------------------------------------------------------------
 make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 </pre></div>
@@ -570,12 +561,12 @@ classified 8 files
        8 unique files.                              
        0 files ignored.
 
-github.com/AlDanial/cloc v 1.90  T=0.01 s (708.2 files/s, 104550.0 lines/s)
+github.com/AlDanial/cloc v 1.90  T=0.01 s (720.7 files/s, 106576.1 lines/s)
 ------------------------------------------------------------------------------------
 File                                             blank        comment           code
 ------------------------------------------------------------------------------------
 gptme/server/static/main.js                         35             45            316
-gptme/server/api.py                                 53             35            177
+gptme/server/api.py                                 53             35            179
 gptme/server/static/index.html                      11             15            148
 gptme/server/static/style.css                       27              4            143
 gptme/server/static/computer.html                    1              1             90
@@ -583,7 +574,7 @@ gptme/server/cli.py                                  8              5           
 gptme/server/__init__.py                             2              3              3
 gptme/server/__main__.py                             1              0              3
 ------------------------------------------------------------------------------------
-SUM:                                               138            108            935
+SUM:                                               138            108            937
 ------------------------------------------------------------------------------------
 make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 </pre></div>
@@ -594,39 +585,42 @@ make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ make cloc-tests
 make[2]: Entering directory &#39;/home/runner/work/gptme/gptme&#39;
 cloc tests --by-file
-      22 text files.
-classified 22 files
-      22 unique files.                              
+      25 text files.
+classified 25 files
+      25 unique files.                              
        0 files ignored.
 
-github.com/AlDanial/cloc v 1.90  T=0.02 s (1217.7 files/s, 96364.2 lines/s)
+github.com/AlDanial/cloc v 1.90  T=0.02 s (1249.0 files/s, 108513.4 lines/s)
 ------------------------------------------------------------------------------------------
 File                                        blank        comment           code
 ------------------------------------------------------------------------------------------
-tests/test_cli.py                              72             41            243
+tests/test_cli.py                              77             41            285
+tests/test_tool_use.py                          8             18            126
 tests/test_util_cli.py                         32             23             94
 tests/test_server.py                           28             10             83
+tests/test_prompt_tools.py                      5              4             78
 tests/test_shell.py                            21             19             63
+tests/test_context.py                          18             13             58
 tests/test_tools_rag.py                        23             13             57
-tests/test_tools_patch.py                      32             91             48
+tests/test_tools_patch.py                      36             91             54
 tests/test_eval.py                              8              9             47
 tests/test-integration.sh                      22             36             43
 tests/test_message.py                           7             17             39
 tests/test_reduce.py                           10              2             39
-tests/test_util.py                             28             51             38
 tests/test_codeblock.py                        14             40             37
+tests/test_util.py                             28             51             37
+tests/conftest.py                              11              5             28
+tests/test_tools_python.py                     19              1             26
 tests/test_readline.py                          7              4             22
-tests/test_tools_python.py                     15              1             21
+tests/test_browser.py                          13             14             19
 tests/test_logmanager.py                        8              5             18
 tests/test_prompts.py                           8              1             16
-tests/test_browser.py                           9             10             13
 tests/test_tools_chats.py                       2              0             13
 tests/test_tools_shell.py                       9             11             13
 tests/test_tools_subagent.py                    7             10             11
-tests/conftest.py                               7              3             10
 tests/test_config.py                            2              0              5
 ------------------------------------------------------------------------------------------
-SUM:                                          371            397            973
+SUM:                                          423            438           1311
 ------------------------------------------------------------------------------------------
 make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 </pre></div>
@@ -642,7 +636,7 @@ classified 8 files
        8 unique files.                              
        0 files ignored.
 
-github.com/AlDanial/cloc v 1.90  T=0.01 s (615.3 files/s, 75223.8 lines/s)
+github.com/AlDanial/cloc v 1.90  T=0.01 s (652.6 files/s, 79784.3 lines/s)
 -------------------------------------------------------------------------------------
 File                                   blank        comment           code
 -------------------------------------------------------------------------------------
@@ -665,100 +659,107 @@ make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 <h3>LoC Total<a class="headerlink" href="#loc-total" title="Link to this heading">#</a></h3>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ make cloc-total
 make[2]: Entering directory &#39;/home/runner/work/gptme/gptme&#39;
-cloc gptme/eval/main.py gptme/eval/suites/init_projects.py gptme/eval/suites/basic.py gptme/eval/suites/__init__.py gptme/eval/suites/browser.py gptme/eval/run.py gptme/eval/execenv.py gptme/eval/__init__.py gptme/eval/types.py gptme/eval/__main__.py gptme/eval/agents.py gptme/eval/filestore.py gptme/__version__.py gptme/commands.py gptme/init.py gptme/chat.py gptme/export.py gptme/server/__init__.py gptme/server/api.py gptme/server/cli.py gptme/server/__main__.py gptme/ncurses.py gptme/constants.py gptme/message.py gptme/__init__.py gptme/tools/_browser_lynx.py gptme/tools/vision.py gptme/tools/patch.py gptme/tools/chats.py gptme/tools/save.py gptme/tools/python.py gptme/tools/_browser_playwright.py gptme/tools/shell.py gptme/tools/gh.py gptme/tools/youtube.py gptme/tools/__init__.py gptme/tools/subagent.py gptme/tools/tmux.py gptme/tools/screenshot.py gptme/tools/base.py gptme/tools/browser.py gptme/tools/read.py gptme/tools/_rag_context.py gptme/tools/computer.py gptme/tools/rag.py gptme/reduce.py gptme/dirs.py gptme/clipboard.py gptme/util/readline.py gptme/util/__init__.py gptme/util/cli.py gptme/codeblock.py gptme/cli.py gptme/logmanager.py gptme/__main__.py gptme/llm/llm_openai_models.py gptme/llm/__init__.py gptme/llm/models.py gptme/llm/llm_openai.py gptme/llm/llm_anthropic.py gptme/interrupt.py gptme/prompts.py gptme/config.py gptme/useredit.py tests/test_readline.py tests/test_prompts.py tests/test_codeblock.py tests/test_browser.py tests/test_util_cli.py tests/conftest.py tests/test_tools_chats.py tests/test_cli.py tests/test_reduce.py tests/test_util.py tests/test_message.py tests/test_server.py tests/test_tools_shell.py tests/test_config.py tests/test_shell.py tests/test_logmanager.py tests/test_tools_rag.py tests/test_tools_python.py tests/test_eval.py tests/test_tools_subagent.py tests/test_tools_patch.py scripts/list_user_messages.py scripts/describe_api.py scripts/summarize_project.py scripts/gpt_todoer.py scripts/train/collect.py scripts/shorten_details.py scripts/treeofthoughts.py --by-file
-      92 text files.
-classified 92 files
-      92 unique files.                              
+cloc gptme/eval/main.py gptme/eval/suites/init_projects.py gptme/eval/suites/basic.py gptme/eval/suites/__init__.py gptme/eval/suites/browser.py gptme/eval/run.py gptme/eval/execenv.py gptme/eval/__init__.py gptme/eval/types.py gptme/eval/__main__.py gptme/eval/agents.py gptme/eval/filestore.py gptme/__version__.py gptme/commands.py gptme/init.py gptme/chat.py gptme/server/__init__.py gptme/server/api.py gptme/server/cli.py gptme/server/__main__.py gptme/ncurses.py gptme/constants.py gptme/message.py gptme/__init__.py gptme/tools/_browser_lynx.py gptme/tools/vision.py gptme/tools/patch.py gptme/tools/chats.py gptme/tools/save.py gptme/tools/python.py gptme/tools/_browser_playwright.py gptme/tools/shell.py gptme/tools/gh.py gptme/tools/youtube.py gptme/tools/__init__.py gptme/tools/subagent.py gptme/tools/tmux.py gptme/tools/screenshot.py gptme/tools/base.py gptme/tools/browser.py gptme/tools/read.py gptme/tools/_rag_context.py gptme/tools/computer.py gptme/tools/rag.py gptme/dirs.py gptme/util/context.py gptme/util/export.py gptme/util/readline.py gptme/util/__init__.py gptme/util/reduce.py gptme/util/clipboard.py gptme/util/cli.py gptme/util/generate_name.py gptme/util/ask_execute.py gptme/util/interrupt.py gptme/util/cost.py gptme/util/useredit.py gptme/codeblock.py gptme/cli.py gptme/logmanager.py gptme/__main__.py gptme/llm/llm_openai_models.py gptme/llm/__init__.py gptme/llm/models.py gptme/llm/llm_openai.py gptme/llm/llm_anthropic.py gptme/prompts.py gptme/config.py tests/test_readline.py tests/test_prompts.py tests/test_codeblock.py tests/test_browser.py tests/test_util_cli.py tests/conftest.py tests/test_tools_chats.py tests/test_cli.py tests/test_reduce.py tests/test_util.py tests/test_message.py tests/test_context.py tests/test_server.py tests/test_tools_shell.py tests/test_config.py tests/test_shell.py tests/test_logmanager.py tests/test_tools_rag.py tests/test_prompt_tools.py tests/test_tools_python.py tests/test_eval.py tests/test_tools_subagent.py tests/test_tool_use.py tests/test_tools_patch.py scripts/list_user_messages.py scripts/describe_api.py scripts/summarize_project.py scripts/gpt_todoer.py scripts/train/collect.py scripts/shorten_details.py scripts/treeofthoughts.py --by-file
+      99 text files.
+classified 99 files
+      99 unique files.                              
        0 files ignored.
 
-github.com/AlDanial/cloc v 1.90  T=0.08 s (1108.4 files/s, 145643.6 lines/s)
+github.com/AlDanial/cloc v 1.90  T=0.09 s (1057.0 files/s, 148875.7 lines/s)
 -------------------------------------------------------------------------------------
 File                                              blank        comment           code
 -------------------------------------------------------------------------------------
+gptme/tools/base.py                                  91             73            344
+gptme/logmanager.py                                  73             63            320
+gptme/tools/shell.py                                 77             69            320
+gptme/chat.py                                        54             88            309
 gptme/eval/main.py                                   52             18            307
-gptme/logmanager.py                                  70             55            290
-gptme/util/__init__.py                               66             29            290
-gptme/chat.py                                        50             75            275
+gptme/cli.py                                         54             41            287
+tests/test_cli.py                                    77             41            285
 gptme/eval/run.py                                    47             27            274
-gptme/tools/shell.py                                 61             63            273
-gptme/cli.py                                         50             41            260
-tests/test_cli.py                                    72             41            243
+gptme/llm/llm_openai.py                              59             26            239
 gptme/ncurses.py                                     39              5            238
+gptme/llm/llm_anthropic.py                           51             18            219
+gptme/llm/__init__.py                                47             39            208
+gptme/message.py                                     47             58            207
 gptme/commands.py                                    18             18            204
-gptme/message.py                                     45             57            201
-gptme/llm/__init__.py                                47             39            190
-gptme/server/api.py                                  53             35            177
-gptme/llm/llm_openai.py                              41             21            172
+gptme/util/context.py                                49             59            202
+gptme/tools/patch.py                                 43             56            180
+gptme/server/api.py                                  53             35            179
+gptme/util/__init__.py                               41             21            176
+gptme/util/ask_execute.py                            47             45            174
+gptme/tools/tmux.py                                  45             62            172
 gptme/tools/_browser_playwright.py                   58             28            165
+gptme/tools/save.py                                  32             38            162
 gptme/util/cli.py                                    48             28            161
-gptme/tools/computer.py                              53             84            155
-gptme/tools/tmux.py                                  39             62            152
-gptme/tools/patch.py                                 40             50            151
-gptme/llm/llm_anthropic.py                           39             13            142
-gptme/tools/base.py                                  44             59            139
-gptme/prompts.py                                     53             77            136
-gptme/llm/models.py                                  24             12            133
+gptme/tools/computer.py                              55             84            156
+gptme/llm/models.py                                  24             12            150
+gptme/prompts.py                                     56             80            141
 gptme/llm/llm_openai_models.py                        3              9            132
-scripts/treeofthoughts.py                            46             44            131
-gptme/tools/python.py                                47             49            129
+gptme/tools/python.py                                49             48            132
+tests/test_tool_use.py                                8             18            126
+gptme/tools/__init__.py                              23             20            121
 gptme/tools/_rag_context.py                          51             28            116
-gptme/config.py                                      32             13            107
+gptme/config.py                                      32             13            108
 scripts/gpt_todoer.py                                47             25            107
-gptme/tools/__init__.py                              23             13            106
 scripts/train/collect.py                             34             52            103
-gptme/tools/subagent.py                              37             27             99
-gptme/tools/chats.py                                 32             36             94
+gptme/tools/subagent.py                              37             29            101
+scripts/treeofthoughts.py                            33             35             95
 tests/test_util_cli.py                               32             23             94
-gptme/export.py                                      17             25             86
-gptme/util/readline.py                               31             24             83
+gptme/tools/chats.py                                 32             34             93
+gptme/util/readline.py                               31             24             87
+gptme/util/export.py                                 17             25             86
 tests/test_server.py                                 28             10             83
-gptme/tools/save.py                                  26             36             79
-gptme/init.py                                        25             18             76
-gptme/reduce.py                                      24             32             73
+gptme/init.py                                        26             20             78
+tests/test_prompt_tools.py                            5              4             78
+gptme/util/reduce.py                                 24             32             73
+gptme/util/generate_name.py                           5              6             69
 gptme/codeblock.py                                   13             10             64
 tests/test_shell.py                                  21             19             63
-gptme/tools/browser.py                               27             49             59
+gptme/tools/browser.py                               27             47             58
+tests/test_context.py                                18             13             58
+gptme/tools/rag.py                                   40             50             57
 tests/test_tools_rag.py                              23             13             57
-gptme/tools/rag.py                                   39             50             56
 gptme/eval/execenv.py                                10             14             55
 gptme/eval/suites/basic.py                           15              1             55
 gptme/eval/suites/init_projects.py                   21              1             55
 gptme/server/cli.py                                   8              5             55
 scripts/describe_api.py                              28             25             54
+tests/test_tools_patch.py                            36             91             54
 gptme/eval/agents.py                                 12              5             52
-tests/test_tools_patch.py                            32             91             48
 tests/test_eval.py                                    8              9             47
+gptme/util/cost.py                                   11             20             40
 tests/test_message.py                                 7             17             39
 tests/test_reduce.py                                 10              2             39
-tests/test_util.py                                   28             51             38
 tests/test_codeblock.py                              14             40             37
-gptme/clipboard.py                                    8              2             35
+tests/test_util.py                                   28             51             37
+gptme/util/clipboard.py                               8              2             35
 scripts/shorten_details.py                           11              6             33
 gptme/eval/filestore.py                               5              2             32
 gptme/eval/types.py                                  13             12             32
 scripts/list_user_messages.py                        10              9             32
 gptme/tools/_browser_lynx.py                          9             13             30
-gptme/tools/screenshot.py                            11              8             28
-gptme/tools/youtube.py                               10              3             27
+tests/conftest.py                                    11              5             28
+gptme/tools/screenshot.py                            11              8             27
+gptme/tools/youtube.py                               10              1             26
 scripts/summarize_project.py                         11              1             26
+tests/test_tools_python.py                           19              1             26
 gptme/dirs.py                                        15              6             22
 tests/test_readline.py                                7              4             22
-gptme/useredit.py                                    12             13             21
-tests/test_tools_python.py                           15              1             21
-gptme/interrupt.py                                   13             14             20
+gptme/util/useredit.py                               12             13             21
+gptme/util/interrupt.py                              13             14             20
 gptme/eval/suites/__init__.py                         3              0             19
+tests/test_browser.py                                13             14             19
 tests/test_logmanager.py                              8              5             18
 gptme/eval/suites/browser.py                          5              0             16
+gptme/tools/gh.py                                    14             21             16
 tests/test_prompts.py                                 8              1             16
-gptme/tools/gh.py                                    12             21             15
+gptme/tools/vision.py                                 8              7             15
 gptme/constants.py                                    4             12             14
-gptme/tools/vision.py                                 7              5             14
-tests/test_browser.py                                 9             10             13
+gptme/tools/read.py                                   6              8             13
 tests/test_tools_chats.py                             2              0             13
 tests/test_tools_shell.py                             9             11             13
 tests/test_tools_subagent.py                          7             10             11
-gptme/tools/read.py                                   3              8             10
-tests/conftest.py                                     7              3             10
 gptme/__init__.py                                     1              0              8
 gptme/__version__.py                                  2              0              7
 tests/test_config.py                                  2              0              5
@@ -768,7 +769,7 @@ gptme/eval/__main__.py                                1              0          
 gptme/server/__init__.py                              2              3              3
 gptme/server/__main__.py                              1              0              3
 -------------------------------------------------------------------------------------
-SUM:                                               2205           1986           7898
+SUM:                                               2467           2209           9268
 -------------------------------------------------------------------------------------
 make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
 </pre></div>
@@ -813,7 +814,8 @@ make[2]: Leaving directory &#39;/home/runner/work/gptme/gptme&#39;
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -881,8 +883,8 @@ By Erik Bjäreholt
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

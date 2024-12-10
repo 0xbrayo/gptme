@@ -19,13 +19,13 @@ See the `README <https://github.com/ErikBjare/gptme/blob/master/README.md>`_ fil
    :caption: User Guide
 
    getting-started
+   usage
    examples
-   demos
    tools
    config
    providers
+   agents
    server
-   automation
    cli
 
 .. toctree::
@@ -39,6 +39,7 @@ See the `README <https://github.com/ErikBjare/gptme/blob/master/README.md>`_ fil
    finetuning
    arewetiny
    timeline
+   alternatives
    Changelog <https://github.com/ErikBjare/gptme/releases>
    api
 
