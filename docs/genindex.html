@@ -170,6 +170,7 @@
 <li class="toctree-l1"><a class="reference internal" href="evals.html">Evals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bot.html">GitHub Bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_tool.html">Creating a Custom Tool for gptme</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arewetiny.html">Are we tiny?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timeline.html">Timeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
@@ -404,7 +405,7 @@
     --name
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-n">gptme command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-name">gptme command line option</a>
 </li>
       </ul></li>
       <li>
@@ -425,7 +426,7 @@
     --non-interactive
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-0">gptme command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-n">gptme command line option</a>
 </li>
       </ul></li>
       <li>
@@ -484,6 +485,8 @@
 
       <ul>
         <li><a href="cli.html#cmdoption-gptme-tool-format">gptme command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-eval-tool-format">gptme-eval command line option</a>
 </li>
       </ul></li>
       <li>
@@ -549,7 +552,7 @@
     -n
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-0">gptme command line option</a>, <a href="cli.html#cmdoption-gptme-n">[1]</a>
+        <li><a href="cli.html#cmdoption-gptme-n">gptme command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-chats-ls-n">gptme-util-chats-ls command line option</a>
 </li>
@@ -619,6 +622,8 @@
 </li>
         <li><a href="api.html#gptme.message.Message.__init__">(gptme.message.Message method)</a>
 </li>
+        <li><a href="api.html#gptme.tools.Parameter.__init__">(gptme.tools.Parameter method)</a>
+</li>
         <li><a href="api.html#gptme.tools.ToolSpec.__init__">(gptme.tools.ToolSpec method)</a>
 </li>
         <li><a href="api.html#gptme.tools.ToolUse.__init__">(gptme.tools.ToolUse method)</a>
@@ -685,8 +690,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.tools.ToolUse.execute">execute() (gptme.tools.ToolUse method)</a>
 </li>
-      <li><a href="api.html#gptme.tools.execute_msg">execute_msg() (in module gptme.tools)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -738,13 +741,13 @@
       <ul>
         <li><a href="cli.html#cmdoption-gptme-m">--model</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-n">--name</a>
+        <li><a href="cli.html#cmdoption-gptme-name">--name</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-y">--no-confirm</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-no-stream">--no-stream</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-0">--non-interactive</a>
+        <li><a href="cli.html#cmdoption-gptme-n">--non-interactive</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-r">--resume</a>
 </li>
@@ -764,7 +767,7 @@
 </li>
         <li><a href="cli.html#cmdoption-gptme-m">-m</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-0">-n</a>, <a href="cli.html#cmdoption-gptme-n">[1]</a>
+        <li><a href="cli.html#cmdoption-gptme-n">-n</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-r">-r</a>
 </li>
@@ -788,6 +791,8 @@
         <li><a href="cli.html#cmdoption-gptme-eval-p">--parallel</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-eval-t">--timeout</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-eval-tool-format">--tool-format</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-eval-m">-m</a>
 </li>
@@ -1010,6 +1015,8 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#gptme.tools.Parameter">Parameter (class in gptme.tools)</a>
+</li>
       <li>
     PATH
 
@@ -1025,10 +1032,10 @@
 </li>
       <li><a href="prompts.html#gptme.prompts.prompt_gptme">prompt_gptme() (in module gptme.prompts)</a>
 </li>
-      <li><a href="prompts.html#gptme.prompts.prompt_project">prompt_project() (in module gptme.prompts)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="prompts.html#gptme.prompts.prompt_project">prompt_project() (in module gptme.prompts)</a>
+</li>
       <li><a href="prompts.html#gptme.prompts.prompt_short">prompt_short() (in module gptme.prompts)</a>
 </li>
       <li><a href="prompts.html#gptme.prompts.prompt_systeminfo">prompt_systeminfo() (in module gptme.prompts)</a>
@@ -1169,7 +1176,7 @@ By Erik Bjäreholt
 
   <p class="copyright">
     
-      © Copyright 2024, Erik Bjäreholt.
+      © Copyright 2025, Erik Bjäreholt.
       <br/>
     
   </p>
