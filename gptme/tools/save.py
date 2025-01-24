@@ -97,14 +97,14 @@ def execute_save_impl(
     # Check if file exists
     if path.exists():
         if not confirm("File exists, overwrite?"):
-            yield Message("system", "Save aborted: user refused to overwrite the file.")
+            yield Message("system", "Save aborted: user refused to overwrite the file.", status="error")
             return
 
     # Check if folder exists
     if not path.parent.exists():
         if not confirm("Folder doesn't exist, create it?"):
             yield Message(
-                "system", "Save aborted: user refused to create a missing folder."
+                "system", "Save aborted: user refused to create a missing folder.", status="error"
             )
             return
         path.parent.mkdir(parents=True)
@@ -112,7 +112,7 @@ def execute_save_impl(
     # Save the file
     with open(path, "w") as f:
         f.write(content)
-    yield Message("system", f"Saved to {path}")
+    yield Message("system", f"Saved to {path}", status="success")
 
 
 def execute_append_impl(
@@ -127,6 +127,7 @@ def execute_append_impl(
             yield Message(
                 "system",
                 "Append aborted: user refused to create the missing destination file.",
+                status="error"
             )
             return
 
@@ -141,7 +142,7 @@ def execute_append_impl(
         content = "\n" + content
     with open(path, "a") as f:
         f.write(content)
-    yield Message("system", f"Appended to {path_display}")
+    yield Message("system", f"Appended to {path_display}", status="success")
 
 
 def execute_save(

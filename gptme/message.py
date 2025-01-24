@@ -43,6 +43,7 @@ class Message:
     pinned: bool = False
     hide: bool = False
     quiet: bool = False
+    status: Literal["success", "error", "info", None] = None
     timestamp: datetime = field(default_factory=datetime.now)
     files: list[Path] = field(default_factory=list)
     call_id: str | None = None
@@ -84,6 +85,8 @@ class Message:
             d["hide"] = True
         if self.call_id:
             d["call_id"] = self.call_id
+        if self.status:
+            d["status"] = self.status
         if keys:
             return {k: d[k] for k in keys if k in d}
         return d
@@ -169,6 +172,7 @@ call_id = "{self.call_id}"
             files=[Path(f) for f in msg.get("files", [])],
             timestamp=datetime.fromisoformat(msg["timestamp"]),
             call_id=msg.get("call_id", None),
+            status=msg.get("status", None),
         )
 
     def get_codeblocks(self) -> list[Codeblock]:
@@ -211,6 +215,17 @@ def format_msgs(
         if highlight:
             color = ROLE_COLOR[msg.role]
             userprefix = f"[bold {color}]{userprefix}[/bold {color}]"
+            
+        # Add status emoji for system messages
+        if msg.role == "system" and msg.status:
+            status_emoji = {
+                "success": "✅",
+                "error": "❌",
+                "info": "ℹ️",
+            }
+            if emoji := status_emoji.get(msg.status):
+                userprefix = f"{userprefix} {emoji}"
+                
         # get terminal width
         max_len = shutil.get_terminal_size().columns - len(userprefix)
         output = ""

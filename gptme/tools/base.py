@@ -287,15 +287,20 @@ class ToolUse:
                     confirm,
                 )
                 if isinstance(ex, Generator):
-                    yield from ex
+                    for msg in ex:
+                        if msg.role == "system":
+                            msg = msg.replace(status="success")
+                        yield msg
                 else:
+                    if ex.role == "system":
+                        ex = ex.replace(status="success")
                     yield ex
             except Exception as e:
                 # if we are testing, raise the exception
                 logger.exception(e)
                 if "pytest" in globals():
                     raise e
-                yield Message("system", f"Error executing tool '{self.tool}': {e}")
+                yield Message("system", f"Error executing tool '{self.tool}': {e}", status="error")
         else:
             logger.warning(f"Tool '{self.tool}' is not available for execution.")
 

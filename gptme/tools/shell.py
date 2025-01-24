@@ -302,10 +302,13 @@ def execute_shell_impl(
         msg += _format_block_smart("", stderr, "stderr") + "\n\n"
     if not stdout and not stderr:
         msg += "No output\n"
-    if returncode:
+    if returncode != 0:
+        print(f"expecting non-zero return code: {returncode}")
         msg += f"Return code: {returncode}"
-
-    yield Message("system", msg)
+        yield Message("system", msg, status="error")
+    else:
+        print(f"expecting zero return code: {returncode}")
+        yield Message("system", msg, status="success")
 
 
 def get_path_fn(*args, **kwargs) -> Path | None:
