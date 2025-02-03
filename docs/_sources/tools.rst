@@ -122,9 +122,18 @@ Computer
     :members:
     :noindex:
 
+.. _rag-tool:
+
 RAG
 ---
 
 .. automodule:: gptme.tools.rag
+    :members:
+    :noindex:
+
+TTS
+---
+
+.. automodule:: gptme.tools.tts
     :members:
     :noindex:

@@ -416,16 +416,18 @@ docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</spa
 <h2>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h2>
 <p>Here are the results of the evals we have run so far:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ gptme-eval eval_results/*/eval_results.csv
-[18:10:19] Browser tool available (using playwright)                            
+[19:50:59] Browser tool available (using playwright)                            
 Model                                          hello           hello-patch     hello-ask       prime100         init-git         init-rust      whois-superuserlabs-ceo
 ---------------------------------------------  --------------  --------------  --------------  ---------------  ---------------  -------------  -------------------------
 anthropic/claude-3-5-haiku-20241022            ✅ 40/41 466tk  ✅ 41/41 382tk  ✅ 41/41 470tk  ✅ 41/41 1019tk  ✅ 39/41 900tk   ❓ N/A         ❓ N/A
 anthropic/claude-3-5-haiku-20241022@markdown   ✅ 11/11 406tk  ✅ 11/11 332tk  ✅ 11/11 396tk  ✅ 11/11 775tk   ✅ 11/11 880tk   ❓ N/A         ❓ N/A
-anthropic/claude-3-5-haiku-20241022@tool       ❌ 0/11 236tk   ❌ 0/11 274tk   ❌ 0/11 316tk   ❌ 0/11 539tk    ❌ 0/11 361tk    ❓ N/A         ❓ N/A
+anthropic/claude-3-5-haiku-20241022@tool       🔶 13/24 329tk  🔶 13/24 304tk  🔶 13/24 362tk  🔶 13/24 645tk   🔶 13/24 563tk   ❓ N/A         ❓ N/A
+anthropic/claude-3-5-haiku-20241022@xml        ✅ 12/13 377tk  ✅ 13/13 335tk  ✅ 12/13 368tk  ✅ 12/13 686tk   ✅ 11/13 747tk   ❓ N/A         ❓ N/A
 anthropic/claude-3-5-sonnet-20240620           ✅ 34/34 629tk  ✅ 34/34 540tk  ✅ 34/34 712tk  ✅ 34/34 974tk   ✅ 34/34 1110tk  ✅ 4/4 1504tk  🔶 3/4 1306tk
 anthropic/claude-3-5-sonnet-20241022           ✅ 41/41 363tk  ✅ 41/41 354tk  ✅ 40/41 401tk  ✅ 41/41 784tk   ✅ 41/41 754tk   ❓ N/A         ❓ N/A
-anthropic/claude-3-5-sonnet-20241022@markdown  ✅ 11/11 336tk  ✅ 11/11 318tk  ✅ 11/11 402tk  ✅ 11/11 710tk   ✅ 11/11 706tk   ❓ N/A         ❓ N/A
-anthropic/claude-3-5-sonnet-20241022@tool      ❌ 0/11 233tk   ❌ 0/11 269tk   ❌ 0/11 329tk   ❌ 0/11 516tk    ❌ 0/11 388tk    ❓ N/A         ❓ N/A
+anthropic/claude-3-5-sonnet-20241022@markdown  ✅ 24/24 340tk  ✅ 24/24 316tk  ✅ 24/24 400tk  ✅ 24/24 714tk   ✅ 24/24 707tk   ❓ N/A         ❓ N/A
+anthropic/claude-3-5-sonnet-20241022@tool      🔶 13/24 257tk  🔶 13/24 287tk  🔶 13/24 362tk  🔶 13/24 620tk   🔶 13/24 567tk   ❓ N/A         ❓ N/A
+anthropic/claude-3-5-sonnet-20241022@xml       ✅ 13/13 338tk  ✅ 13/13 314tk  ✅ 13/13 405tk  ✅ 13/13 723tk   ✅ 13/13 709tk   ❓ N/A         ❓ N/A
 anthropic/claude-3-haiku-20240307              ✅ 34/34 386tk  ✅ 34/34 377tk  ✅ 34/34 432tk  ❌ 6/34 787tk    🔶 24/34 851tk   🔶 3/4 670tk   ✅ 4/4 1535tk
 gemini/gemini-1.5-flash-latest                 ❌ 0/41 29tk    ❌ 0/41 29tk    ❌ 0/41 29tk    ❌ 0/41 29tk     ❌ 0/41 29tk     ❓ N/A         ❓ N/A
 gemini/gemini-1.5-flash-latest@markdown        ❌ 0/11 29tk    ❌ 0/11 29tk    ❌ 0/11 29tk    ❌ 0/11 29tk     ❌ 0/11 29tk     ❓ N/A         ❓ N/A
@@ -434,9 +436,10 @@ openai/gpt-4-turbo                             ✅ 3/3 255tk    ✅ 3/3 312tk   
 openai/gpt-4o                                  ✅ 76/76 313tk  ✅ 75/76 308tk  🔶 53/76 335tk  🔶 24/76 438tk   🔶 53/76 592tk   ✅ 5/5 663tk   ✅ 5/5 1253tk
 openai/gpt-4o-mini                             🔶 40/77 250tk  ✅ 77/77 320tk  ✅ 77/77 378tk  🔶 49/77 496tk   ✅ 71/77 791tk   ✅ 6/6 813tk   ✅ 6/6 951tk
 openai/gpt-4o-mini@markdown                    ❌ 0/11 213tk   ✅ 11/11 304tk  ✅ 11/11 361tk  ✅ 10/11 721tk   ✅ 11/11 800tk   ❓ N/A         ❓ N/A
-openai/gpt-4o-mini@tool                        🔶 3/11 285tk   ✅ 11/11 306tk  ✅ 11/11 382tk  ❌ 0/11 559tk    ✅ 11/11 650tk   ❓ N/A         ❓ N/A
-openai/gpt-4o@markdown                         ✅ 11/11 277tk  ✅ 11/11 301tk  ✅ 11/11 355tk  ❌ 0/11 422tk    ✅ 11/11 762tk   ❓ N/A         ❓ N/A
-openai/gpt-4o@tool                             ✅ 11/11 250tk  ✅ 11/11 300tk  ✅ 10/11 370tk  ✅ 11/11 630tk   ✅ 11/11 641tk   ❓ N/A         ❓ N/A
+openai/gpt-4o-mini@tool                        🔶 16/24 283tk  ✅ 24/24 305tk  ✅ 24/24 381tk  🔶 13/24 579tk   ✅ 24/24 653tk   ❓ N/A         ❓ N/A
+openai/gpt-4o@markdown                         ✅ 24/24 282tk  ✅ 24/24 303tk  ✅ 24/24 354tk  ❌ 0/24 424tk    🔶 18/24 630tk   ❓ N/A         ❓ N/A
+openai/gpt-4o@tool                             ✅ 24/24 250tk  ✅ 24/24 301tk  ✅ 23/24 375tk  ✅ 24/24 631tk   ✅ 24/24 624tk   ❓ N/A         ❓ N/A
+openai/gpt-4o@xml                              ✅ 13/13 262tk  ✅ 13/13 306tk  ✅ 13/13 360tk  ❌ 0/13 427tk    🔶 6/13 489tk    ❓ N/A         ❓ N/A
 openai/o1-mini                                 ✅ 3/3 354tk    ✅ 3/3 431tk    ✅ 3/3 460tk    🔶 2/3 567tk     🔶 3/5 2222tk    🔶 1/5 1412tk  🔶 2/3 813tk
 openai/o1-preview                              ✅ 2/2 308tk    ✅ 2/2 570tk    🔶 1/2 549tk    ✅ 2/2 490tk     ✅ 3/3 823tk     ✅ 1/1 656tk   ✅ 1/1 1998tk
 google/gemini-flash-1.5                        ✅ 2/2 225tk    ✅ 2/2 401tk    ✅ 2/2 430tk    ❌ 0/2 296tk     ✅ 1/1 686tk     ❌ 0/1 661tk   ✅ 1/1 1014tk
