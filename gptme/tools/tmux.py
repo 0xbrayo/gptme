@@ -45,6 +45,36 @@ def get_sessions() -> list[str]:
     assert output.returncode == 0
     return [session.split(":")[0] for session in output.stdout.split("\n") if session]
 
+def poll_pane(pane_id: str) -> Generator[Message, None, None]:
+    """Poll a tmux pane for changes in output.
+    
+    Args:
+        pane_id: The ID of the pane to poll
+        interval: Time between polls in seconds
+        max_polls: Maximum number of polls before stopping
+    """
+  
+    last_content = ""
+    polls = 0
+    interval = 1
+    max_polls = 30
+    
+    while polls < max_polls:
+        current_content = _capture_pane(pane_id)
+        if current_content != last_content:
+            yield Message(
+                "system",
+                f"""New output from pane {pane_id}:
+                ```output
+                {current_content}
+                ```""",
+                            )
+            last_content = current_content
+        
+        sleep(interval)
+        polls += 1
+    
+    yield Message("system", f"Stopped polling pane {pane_id} after {max_polls} polls")
 
 def _capture_pane(pane_id: str) -> str:
     result = subprocess.run(
@@ -234,6 +264,8 @@ def execute_tmux(
             yield send_keys(pane_id, keys)
         elif command == "inspect_pane":
             yield inspect_pane(_args)
+        elif command == "poll_pane":
+            yield poll_pane(_args)
         elif command == "kill_session":
             yield kill_session(_args)
         else:
@@ -277,6 +309,17 @@ def examples(tool_format):
 > Assistant: I'll send 'Ctrl+C' to the pane to stop the server:
 {ToolUse("tmux", [], "send_keys 0 C-c").to_output(tool_format)}
 > System: Sent 'C-c' to pane 0
+
+> User: Keep checking the output of the dev server
+> Assistant: Certainly! I'll keep polling the pane for you:
+{ToolUse("tmux", [], "poll_pane gptme_1").to_output(tool_format)}
+> System: New output from pane gptme_1:
+    VITE v4.3.9  ready in 820 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
+> System: Stopped polling pane gptme_1 after 30 polls
 
 #### Get info from ncurses applications
 
