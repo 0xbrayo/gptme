@@ -54,18 +54,21 @@ The current evaluations test basic tool use in gptme, such as the ability to: re
     The evaluation suite tests models on:
 
     1. Tool Usage
+
        - Shell commands and file operations
        - Git operations
        - Web browsing and data extraction
        - Project navigation and understanding
 
     2. Programming Tasks
+
        - Code completion and generation
        - Bug fixing and debugging
        - Documentation writing
        - Test creation
 
     3. Reasoning
+
        - Multi-step problem solving
        - Tool selection and sequencing
        - Error handling and recovery
@@ -87,6 +90,6 @@ We are working on making the evals more robust, informative, and challenging.
 Other evals
 -----------
 
-We have considered running gptme on other evals such as SWE-Bench, but have not finished it (see `PR #142 <https://github.com/ErikBjare/gptme/pull/142>`_).
+We have considered running gptme on other evals such as SWE-Bench, but have not finished it (see `PR #142 <https://github.com/gptme/gptme/pull/142>`_).
 
 If you are interested in running gptme on other evals, drop a comment in the issues!
