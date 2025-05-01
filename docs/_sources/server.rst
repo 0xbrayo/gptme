@@ -27,7 +27,7 @@ Web UI
 
 A tiny chat interface with minimal dependencies that is bundled with the server.
 
-Simply start the server to access the interface at http://localhost:5000
+Simply start the server to access the interface at http://localhost:5700
 
 Fancy Web UI
 ------------

@@ -89,6 +89,7 @@ The metrics above show:
 - **Project Overview**: Basic stats about the codebase size and complexity
 - **Complex Functions**: Functions rated D+ (high complexity, should be refactored)
 - **Large Files**: Files over 300 SLOC (should be split into smaller modules)
+- **Duplicated Files**: Using `jscpd` to find duplicated code
 
 We should aim to:
 

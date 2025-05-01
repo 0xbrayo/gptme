@@ -120,7 +120,7 @@ Computer
     :members:
     :noindex:
 
-.. _rag-tool:
+.. _rag:
 
 RAG
 ---
@@ -135,3 +135,9 @@ TTS
 .. automodule:: gptme.tools.tts
     :members:
     :noindex:
+
+MCP
+---
+
+The Model Context Protocol (MCP) allows you to extend gptme with custom tools through external servers.
+See :doc:`mcp` for configuration and usage details.
