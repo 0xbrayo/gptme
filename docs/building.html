@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Evals &#8212; gptme</title>
+    <title>Building Executables &#8212; gptme</title>
   
   
   
@@ -46,13 +46,13 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/asciinema-player_3.6.3.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'evals';</script>
-    <link rel="canonical" href="https://gptme.org/docs/evals.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'building';</script>
+    <link rel="canonical" href="https://gptme.org/docs/building.html" />
     <link rel="icon" href="_static/logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="GitHub Bot" href="bot.html" />
-    <link rel="prev" title="Prompts" href="prompts.html" />
+    <link rel="next" title="Prompts" href="prompts.html" />
+    <link rel="prev" title="Contributing" href="contributing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -169,9 +169,9 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">Building Executables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Building Executables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prompts.html">Prompts</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Evals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evals.html">Evals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bot.html">GitHub Bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_tool.html">Custom Tools</a></li>
@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="https://github.com/gptme/gptme/edit/main/docs/evals.rst" target="_blank"
+      <li><a href="https://github.com/gptme/gptme/edit/main/docs/building.rst" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -295,7 +295,7 @@
       
       
       
-      <li><a href="_sources/evals.rst" target="_blank"
+      <li><a href="_sources/building.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -371,7 +371,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Evals</h1>
+    <h1>Building Executables</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -381,11 +381,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-model">Recommended Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-gptme-server-executable">Building gptme-server Executable</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-evals">Available Evals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-evals">Other evals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution">Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-build-artifacts">Cleaning Build Artifacts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customization">Customization</a></li>
 </ul>
             </nav>
         </div>
@@ -397,101 +397,74 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="evals">
-<h1>Evals<a class="headerlink" href="#evals" title="Link to this heading">#</a></h1>
-<p>gptme provides LLMs with a wide variety of tools, but how well do models make use of them? Which tasks can they complete, and which ones do they struggle with? How far can they get on their own, without any human intervention?</p>
-<p>To answer these questions, we have created an evaluation suite that tests the capabilities of LLMs on a wide variety of tasks.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The evaluation suite is still tiny and under development, but the eval harness is fully functional.</p>
+  <section id="building-executables">
+<h1>Building Executables<a class="headerlink" href="#building-executables" title="Link to this heading">#</a></h1>
+<p>gptme supports building standalone executables using PyInstaller for easier distribution.</p>
+<section id="building-gptme-server-executable">
+<h2>Building gptme-server Executable<a class="headerlink" href="#building-gptme-server-executable" title="Link to this heading">#</a></h2>
+<p>To build a standalone executable for gptme-server:</p>
+<ol class="arabic">
+<li><p><strong>Install dependencies</strong> (including PyInstaller):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install<span class="w"> </span>--extras<span class="w"> </span>server<span class="w"> </span>--with<span class="w"> </span>dev
+</pre></div>
 </div>
-<section id="recommended-model">
-<h2>Recommended Model<a class="headerlink" href="#recommended-model" title="Link to this heading">#</a></h2>
-<p>The recommended model is <strong>Claude 3.7 Sonnet</strong> (<code class="docutils literal notranslate"><span class="pre">anthropic/claude-3-7-sonnet-20250219</span></code>) for its:</p>
-<ul class="simple">
-<li><p>Strong coder capabilities</p></li>
-<li><p>Strong performance across all tool types</p></li>
-<li><p>Reasoning capabilities</p></li>
-<li><p>Vision &amp; computer use capabilities</p></li>
-</ul>
-<p>Decent alternatives include:</p>
-<ul class="simple">
-<li><p>GPT-4o (<code class="docutils literal notranslate"><span class="pre">openai/gpt-4o</span></code>)</p></li>
-<li><p>Llama 3.1 405B (<code class="docutils literal notranslate"><span class="pre">openrouter/meta-llama/llama-3.1-405b-instruct</span></code>)</p></li>
-<li><p>DeepSeek V3 (<code class="docutils literal notranslate"><span class="pre">deepseek/deepseek-chat</span></code>)</p></li>
-<li><p>DeepSeek R1 (<code class="docutils literal notranslate"><span class="pre">deepseek/deepseek-reasoner</span></code>)</p></li>
-</ul>
+</li>
+<li><p><strong>Build the executable</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>build-server-exe
+</pre></div>
+</div>
+<p>Or manually:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/build_server_executable.sh
+</pre></div>
+</div>
+</li>
+<li><p><strong>Find the executable</strong> in the <code class="docutils literal notranslate"><span class="pre">dist/</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-la<span class="w"> </span>dist/gptme-server*
+</pre></div>
+</div>
+</li>
+</ol>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
-<p>You can run the simple <code class="docutils literal notranslate"><span class="pre">hello</span></code> eval with Claude 3.7 Sonnet like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gptme-eval<span class="w"> </span>hello<span class="w"> </span>--model<span class="w"> </span>anthropic/claude-3-7-sonnet-20250219
+<p>The standalone executable includes all dependencies and can be run without Python installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the server</span>
+./dist/gptme-server<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">5700</span>
+
+<span class="c1"># Show help</span>
+./dist/gptme-server<span class="w"> </span>--help
 </pre></div>
 </div>
-<p>However, we recommend running it in Docker to improve isolation and reproducibility:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>build-docker
-docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span><span class="s2">&quot;ANTHROPIC_API_KEY=&lt;your api key&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/eval_results:/app/eval_results<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>gptme-eval<span class="w"> </span>hello<span class="w"> </span>--model<span class="w"> </span>anthropic/claude-3-7-sonnet-20250219
+<p>The executable includes:</p>
+<ul class="simple">
+<li><p>All Python dependencies (Flask, gptme, etc.)</p></li>
+<li><p>Static web UI files</p></li>
+<li><p>All gptme tools and functionality</p></li>
+</ul>
+</section>
+<section id="distribution">
+<h2>Distribution<a class="headerlink" href="#distribution" title="Link to this heading">#</a></h2>
+<p>The executable is self-contained and can be distributed to systems without Python or gptme installed.</p>
+<p><strong>Note</strong>: The executable is platform-specific (Linux/macOS/Windows).</p>
+</section>
+<section id="cleaning-build-artifacts">
+<h2>Cleaning Build Artifacts<a class="headerlink" href="#cleaning-build-artifacts" title="Link to this heading">#</a></h2>
+<p>To clean PyInstaller build artifacts:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>clean-build
 </pre></div>
 </div>
+<p>This removes the <code class="docutils literal notranslate"><span class="pre">build/</span></code>, <code class="docutils literal notranslate"><span class="pre">dist/</span></code>, and temporary spec backup files.</p>
 </section>
-<section id="available-evals">
-<h2>Available Evals<a class="headerlink" href="#available-evals" title="Link to this heading">#</a></h2>
-<p>The current evaluations test basic tool use in gptme, such as the ability to: read, write, patch files; run code in ipython, commands in the shell; use git and create new projects with npm and cargo. It also has basic tests for web browsing and data extraction.</p>
-</section>
-<section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h2>
-<p>Here are the results of the evals we have run so far:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ gptme-eval eval_results/*/eval_results.csv
-Model                                          hello             hello-patch       hello-ask         prime100          init-git          init-rust      whois-superuserlabs-ceo
----------------------------------------------  ----------------  ----------------  ----------------  ----------------  ----------------  -------------  -------------------------
-anthropic/claude-3-5-haiku-20241022            ✅ 40/41 466tk    ✅ 41/41 382tk    ✅ 41/41 470tk    ✅ 41/41 1019tk   ✅ 39/41 900tk    ❓ N/A         ❓ N/A
-anthropic/claude-3-5-haiku-20241022@markdown   ✅ 11/11 406tk    ✅ 11/11 332tk    ✅ 11/11 396tk    ✅ 11/11 775tk    ✅ 11/11 880tk    ❓ N/A         ❓ N/A
-anthropic/claude-3-5-haiku-20241022@tool       ❌ 13/148 261tk   ❌ 13/148 280tk   ❌ 13/148 340tk   ❌ 13/148 535tk   ❌ 17/148 645tk   ❓ N/A         ❓ N/A
-anthropic/claude-3-5-haiku-20241022@xml        ❌ 12/137 268tk   ❌ 13/137 276tk   ❌ 12/137 327tk   ❌ 12/137 517tk   ❌ 11/137 439tk   ❓ N/A         ❓ N/A
-anthropic/claude-3-5-sonnet-20240620           ✅ 34/34 629tk    ✅ 34/34 540tk    ✅ 34/34 712tk    ✅ 34/34 974tk    ✅ 34/34 1110tk   ✅ 4/4 1504tk  🔶 3/4 1306tk
-anthropic/claude-3-5-sonnet-20241022           ✅ 41/41 363tk    ✅ 41/41 354tk    ✅ 40/41 401tk    ✅ 41/41 784tk    ✅ 41/41 754tk    ❓ N/A         ❓ N/A
-anthropic/claude-3-5-sonnet-20241022@markdown  ✅ 146/148 370tk  ✅ 146/148 315tk  ✅ 146/148 405tk  ✅ 146/148 745tk  ✅ 146/148 706tk  ❓ N/A         ❓ N/A
-anthropic/claude-3-5-sonnet-20241022@tool      ❌ 13/148 235tk   ❌ 13/148 249tk   ❌ 13/148 314tk   ❌ 13/148 402tk   ❌ 13/148 367tk   ❓ N/A         ❓ N/A
-anthropic/claude-3-5-sonnet-20241022@xml       ❌ 13/137 249tk   ❌ 13/137 249tk   ❌ 13/137 313tk   ❌ 13/137 465tk   ❌ 13/137 370tk   ❓ N/A         ❓ N/A
-anthropic/claude-3-haiku-20240307              ✅ 34/34 386tk    ✅ 34/34 377tk    ✅ 34/34 432tk    ❌ 6/34 787tk     🔶 24/34 851tk    🔶 3/4 670tk   ✅ 4/4 1535tk
-gemini/gemini-1.5-flash-latest                 ❌ 0/41 29tk      ❌ 0/41 29tk      ❌ 0/41 29tk      ❌ 0/41 29tk      ❌ 0/41 29tk      ❓ N/A         ❓ N/A
-gemini/gemini-1.5-flash-latest@markdown        ❌ 0/11 29tk      ❌ 0/11 29tk      ❌ 0/11 29tk      ❌ 0/11 29tk      ❌ 0/11 29tk      ❓ N/A         ❓ N/A
-gemini/gemini-1.5-flash-latest@tool            ❌ 0/11 29tk      ❌ 0/11 29tk      ❌ 0/11 29tk      ❌ 0/11 29tk      ❌ 0/11 29tk      ❓ N/A         ❓ N/A
-openai/gpt-4-turbo                             ✅ 3/3 255tk      ✅ 3/3 312tk      ✅ 3/3 376tk      ✅ 3/3 527tk      ✅ 4/4 590tk      ✅ 4/4 784tk   ✅ 6/7 819tk
-openai/gpt-4o                                  ✅ 76/76 313tk    ✅ 75/76 308tk    🔶 53/76 335tk    🔶 24/76 438tk    🔶 53/76 592tk    ✅ 5/5 663tk   ✅ 5/5 1253tk
-openai/gpt-4o-mini                             🔶 40/77 250tk    ✅ 77/77 320tk    ✅ 77/77 378tk    🔶 49/77 496tk    ✅ 71/77 791tk    ✅ 6/6 813tk   ✅ 6/6 951tk
-openai/gpt-4o-mini@markdown                    ❌ 0/11 213tk     ✅ 11/11 304tk    ✅ 11/11 361tk    ✅ 10/11 721tk    ✅ 11/11 800tk    ❓ N/A         ❓ N/A
-openai/gpt-4o-mini@tool                        🔶 101/148 269tk  ✅ 148/148 311tk  ✅ 148/148 391tk  ✅ 137/148 552tk  ✅ 148/148 657tk  ❓ N/A         ❓ N/A
-openai/gpt-4o@markdown                         ✅ 148/148 280tk  ✅ 147/148 310tk  ✅ 143/148 360tk  ❌ 4/148 432tk    ❌ 20/148 330tk   ❓ N/A         ❓ N/A
-openai/gpt-4o@tool                             🔶 99/148 267tk   ✅ 148/148 303tk  🔶 95/148 336tk   ✅ 143/148 645tk  ✅ 148/148 663tk  ❓ N/A         ❓ N/A
-openai/gpt-4o@xml                              ❌ 13/137 204tk   ❌ 13/137 247tk   ❌ 13/137 280tk   ❌ 0/137 428tk    ❌ 6/137 284tk    ❓ N/A         ❓ N/A
-openai/o1-mini                                 ✅ 3/3 354tk      ✅ 3/3 431tk      ✅ 3/3 460tk      🔶 2/3 567tk      🔶 3/5 2222tk     🔶 1/5 1412tk  🔶 2/3 813tk
-openai/o1-preview                              ✅ 2/2 308tk      ✅ 2/2 570tk      🔶 1/2 549tk      ✅ 2/2 490tk      ✅ 3/3 823tk      ✅ 1/1 656tk   ✅ 1/1 1998tk
-google/gemini-flash-1.5                        ✅ 2/2 225tk      ✅ 2/2 401tk      ✅ 2/2 430tk      ❌ 0/2 296tk      ✅ 1/1 686tk      ❌ 0/1 661tk   ✅ 1/1 1014tk
-google/gemini-pro-1.5                          ✅ 1/1 341tk      ✅ 1/1 419tk      ✅ 1/1 456tk      ✅ 1/1 676tk      🔶 2/3 431tk      🔶 1/2 1016tk  ✅ 2/2 1308tk
-google/gemma-2-27b-it                          ✅ 1/1 288tk      ✅ 1/1 384tk      ✅ 1/1 446tk      ✅ 1/1 714tk      ✅ 1/1 570tk      ❌ 0/1 535tk   ❌ 0/1 235tk
-google/gemma-2-9b-it                           ❌ 0/2 186tk      ✅ 2/2 370tk      ✅ 2/2 368tk      ❌ 0/2 545tk      ✅ 1/1 492tk      ❌ 0/1 1730tk  ❌ 0/1 352tk
-meta-llama/llama-3.1-405b-instruct             🔶 18/76 92tk     🔶 21/76 176tk    🔶 20/76 152tk    🔶 22/76 164tk    ❌ 13/76 160tk    🔶 2/5 255tk   ❌ 0/5 85tk
-meta-llama/llama-3.1-405b-instruct@markdown    ❌ 0/11 35tk      ❌ 0/11 35tk      ❌ 0/11 35tk      ❌ 0/11 35tk      ❌ 0/11 35tk      ❓ N/A         ❓ N/A
-meta-llama/llama-3.1-405b-instruct@tool        ❌ 0/11 35tk      ❌ 0/11 35tk      ❌ 0/11 35tk      ❌ 0/11 35tk      ❌ 0/11 35tk      ❓ N/A         ❓ N/A
-meta-llama/llama-3.1-70b-instruct              ✅ 5/6 367tk      ✅ 5/6 424tk      ✅ 6/6 452tk      🔶 2/6 546tk      ✅ 5/6 813tk      🔶 3/4 682tk   🔶 2/3 1461tk
-meta-llama/llama-3.1-8b-instruct               ✅ 1/1 277tk      ✅ 1/1 441tk      ❌ 0/1 400tk      ❌ 0/1 5095tk     ✅ 1/1 2266tk     ❓ N/A         ❓ N/A
-meta-llama/llama-3.2-11b-vision-instruct       ✅ 2/2 352tk      ✅ 2/2 493tk      ❌ 0/2 479tk      ✅ 2/2 2643tk     ❓ N/A            ❓ N/A         ❓ N/A
-meta-llama/llama-3.2-90b-vision-instruct       🔶 2/4 237tk      🔶 2/4 288tk      🔶 3/4 336tk      🔶 1/4 233tk      ❓ N/A            ❓ N/A         ❓ N/A
-nousresearch/hermes-2-pro-llama-3-8b           ✅ 1/1 341tk      ❌ 0/1 4274tk     ❌ 0/1 3760tk     ❌ 0/1 659tk      ❓ N/A            ❓ N/A         ❓ N/A
-nousresearch/hermes-3-llama-3.1-405b           ✅ 2/2 317tk      ✅ 2/2 420tk      ✅ 2/2 325tk      ✅ 2/2 410tk      ✅ 1/1 821tk      ✅ 1/1 758tk   ✅ 1/1 1039tk
-nousresearch/hermes-3-llama-3.1-70b            ❌ 0/2 173tk      ❌ 0/2 187tk      ❌ 0/2 202tk      ❌ 0/2 177tk      ❓ N/A            ❓ N/A         ❓ N/A
-</pre></div>
-</div>
-<p>We are working on making the evals more robust, informative, and challenging.</p>
-</section>
-<section id="other-evals">
-<h2>Other evals<a class="headerlink" href="#other-evals" title="Link to this heading">#</a></h2>
-<p>We have considered running gptme on other evals such as SWE-Bench, but have not finished it (see <a class="reference external" href="https://github.com/gptme/gptme/pull/142">PR #142</a>).</p>
-<p>If you are interested in running gptme on other evals, drop a comment in the issues!</p>
+<section id="customization">
+<h2>Customization<a class="headerlink" href="#customization" title="Link to this heading">#</a></h2>
+<p>The PyInstaller configuration is in <code class="docutils literal notranslate"><span class="pre">scripts/pyinstaller/gptme-server.spec</span></code>. You can modify this file to:</p>
+<ul class="simple">
+<li><p>Add/remove hidden imports</p></li>
+<li><p>Include additional data files</p></li>
+<li><p>Change executable options</p></li>
+<li><p>Optimize the build</p></li>
+</ul>
+<p>For more details, see the <a class="reference external" href="https://pyinstaller.org/">PyInstaller documentation</a>.</p>
 </section>
 </section>
 
@@ -507,20 +480,20 @@ nousresearch/hermes-3-llama-3.1-70b            ❌ 0/2 173tk      ❌ 0/2 187tk 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="prompts.html"
+       href="contributing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Prompts</p>
+        <p class="prev-next-title">Contributing</p>
       </div>
     </a>
     <a class="right-next"
-       href="bot.html"
+       href="prompts.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">GitHub Bot</p>
+        <p class="prev-next-title">Prompts</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -541,11 +514,11 @@ nousresearch/hermes-3-llama-3.1-70b            ❌ 0/2 173tk      ❌ 0/2 187tk 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-model">Recommended Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-gptme-server-executable">Building gptme-server Executable</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-evals">Available Evals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-evals">Other evals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution">Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-build-artifacts">Cleaning Build Artifacts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customization">Customization</a></li>
 </ul>
   </nav></div>
 
