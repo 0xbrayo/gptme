@@ -79,11 +79,26 @@ Example ``gptme.toml``:
 
 This file currently supports a few options:
 
-- ``files``, a list of paths that gptme will always include in the context.
+- ``files``, a list of paths that gptme will always include in the context. If no ``gptme.toml`` is present or if the ``files`` option is unset, gptme will automatically look for common project files, such as: ``README.md``, ``pyproject.toml``, ``package.json``, ``Cargo.toml``, ``Makefile``, ``.cursor/rules/**.mdc``, ``CLAUDE.md``, ``GEMINI.md``.
 - ``prompt``, a string that will be included in the system prompt with a ``# Current Project`` header.
 - ``base_prompt``, a string that will be used as the base prompt for the project. This will override the global base prompt ("You are gptme v{__version__}, a general-purpose AI assistant powered by LLMs. [...]"). It can be useful to change the identity of the assistant and override some default behaviors.
 - ``context_cmd``, a command used to generate context to include when constructing the system prompt. The command will be run in the workspace root and should output a string that will be included in the system prompt. Examples can be ``git status -v`` or ``scripts/context.sh``.
+
+  .. warning::
+
+     The command is executed with shell interpretation. Review ``gptme.toml`` before running gptme in untrusted repositories. See :doc:`security` for details.
+
 - ``rag``, a dictionary to configure the RAG tool. See :ref:`rag` for more information.
+- ``plugins``, a dictionary to configure plugins for this project. See :doc:`plugins` for more information. Example:
+
+  .. code-block:: toml
+
+      [plugins]
+      paths = ["./plugins", "~/.config/gptme/plugins"]
+      enabled = ["my_project_plugin"]
+
+- ``env``, a dictionary of environment variables to set for this project. These take precedence over global config but are overridden by shell environment variables.
+- ``mcp``, MCP server configuration for this project. See :ref:`mcp` for more information.
 
 See :class:`gptme.config.ProjectConfig` for the API reference.
 
@@ -110,15 +125,25 @@ Besides the configuration files, gptme supports several environment variables to
 .. rubric:: Feature Flags
 
 - ``GPTME_CHECK`` - Enable ``pre-commit`` checks (default: true if ``.pre-commit-config.yaml`` present, see :ref:`pre-commit`)
+- ``GPTME_CHAT_HISTORY`` - Enable cross-conversation context (default: false)
 - ``GPTME_COSTS`` - Enable cost reporting for API calls (default: false)
 - ``GPTME_FRESH`` - Enable fresh context mode (default: false)
-- ``GPTME_BREAK_ON_TOOLUSE`` - Interrupt generation when tool use occurs in stream (default: true)
+- ``GPTME_BREAK_ON_TOOLUSE`` - Interrupt generation when tool use occurs in stream (default: true). Set to ``0`` to allow multiple tool calls per LLM response (equivalent to ``--multi-tool`` flag).
 - ``GPTME_PATCH_RECOVERY`` - Return file content in error for non-matching patches (default: false)
 - ``GPTME_SUGGEST_LLM`` - Enable LLM-powered prompt completion (default: false)
+
+.. rubric:: Deprecated Environment Variables
+
+- ``GPTME_TOOLUSE_PARALLEL`` - **DEPRECATED**: Previously enabled parallel thread execution of tool calls, but caused thread-safety issues with prompt_toolkit. Use ``GPTME_BREAK_ON_TOOLUSE=0`` instead for multi-tool mode with sequential execution.
+
+.. rubric:: API Configuration
+
+- ``LLM_API_TIMEOUT`` - Set the timeout in seconds for LLM API requests (default: 600). Must be a valid numeric string (e.g., "600", "1800"). Useful for local LLMs that may take longer to respond.
 
 .. rubric:: Tool Configuration
 
 - ``GPTME_TTS_VOICE`` - Set the voice to use for TTS
+- ``GPTME_TTS_SPEED`` - Set the speed to use for TTS (default: 1.0)
 - ``GPTME_VOICE_FINISH`` - Wait for TTS speech to finish before exiting (default: false)
 
 .. rubric:: Paths
@@ -126,3 +151,24 @@ Besides the configuration files, gptme supports several environment variables to
 - ``GPTME_LOGS_HOME`` - Override the default logs folder location
 
 All boolean flags accept "1", "true" (case-insensitive) as truthy values.
+
+Cross-Conversation Context
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When ``GPTME_CHAT_HISTORY=true`` is set, gptme will automatically include summaries from recent conversations in new chat sessions, providing continuity across conversations.
+
+**What it includes:**
+
+- Summaries of the 3 most recent substantial conversations (4+ messages)
+- Initial user requests and follow-ups from each conversation
+- Last meaningful assistant response from each conversation
+- Filters out test conversations and very short interactions
+
+**Benefits:**
+
+- Better continuity for ongoing projects and work
+- Understanding of user preferences and communication style
+- Context for follow-up questions without manual references
+- Awareness of previous technical discussions and solutions
+
+The context is automatically included as a system message when starting new conversations, enabling much better continuity without needing to manually reference previous conversations or maintain persistent notes.

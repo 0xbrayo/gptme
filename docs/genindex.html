@@ -45,6 +45,14 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/asciinema-player_3.6.3.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="canonical" href="https://gptme.org/docs/genindex.html" />
     <link rel="icon" href="_static/logo.png"/>
@@ -150,7 +158,10 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system-dependencies.html">System Dependencies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="demos.html">Demos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="automation.html">Automation</a></li>
@@ -158,12 +169,20 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lessons.html">Lessons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skills/README.html">Skills System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="providers.html">Providers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="providers.html">Providers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-providers.html">Custom Providers</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="agents.html">Agents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcp.html">MCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acp.html">ACP (Agent Client Protocol)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security Considerations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
 <ul class="nav bd-sidenav">
@@ -174,6 +193,8 @@
 <li class="toctree-l1"><a class="reference internal" href="bot.html">GitHub Bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_tool.html">Custom Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugin System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
@@ -181,7 +202,61 @@
 <li class="toctree-l1"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arewetiny.html">Are we tiny?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timeline.html">Timeline</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/gptme/gptme/releases">Changelog</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="changelog.html">Changelog</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.31.0.html">v0.31.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.30.0.html">v0.30.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.29.0.html">v0.29.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.3.html">v0.28.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.2.html">v0.28.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.1.html">v0.28.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.0.html">v0.28.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.27.0.html">v0.27.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.26.0.html">v0.26.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.25.0.html">v0.25.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.24.1.html">v0.24.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.24.0.html">v0.24.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.23.0.html">v0.23.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.22.0.html">v0.22.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.21.0.html">v0.21.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.20.0.html">v0.20.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.19.0.html">v0.19.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.18.0.html">v0.18.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.17.0.html">v0.17.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.16.0.html">v0.16.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.15.0.html">v0.15.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.14.0.html">v0.14.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.13.0.html">v0.13.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.12.0.html">v0.12.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.11.0.html">v0.11.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.5.html">v0.10.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.4.html">v0.10.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.3.html">v0.10.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.2.html">v0.10.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.1.html">v0.10.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.0.html">v0.10.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.4.html">v0.9.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.3.html">v0.9.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.2.html">v0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.1.html">v0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.0.html">v0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.8.1.html">v0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.8.0.html">v0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.7.0.html">v0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.6.1.html">v0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.6.0.html">v0.6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.5.0.html">v0.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.2.html">v0.4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.1.html">v0.4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.0.html">v0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.3.html">v0.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.2.html">v0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.1.html">v0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.0.html">v0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.2.2.html">v0.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.2.1.html">v0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.1.1.html">v0.1.1</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">External</span></p>
 <ul class="nav bd-sidenav">
@@ -333,6 +408,13 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    --agent-path
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-agent-path">gptme command line option</a>
+</li>
+      </ul></li>
+      <li>
     --all
 
       <ul>
@@ -354,17 +436,31 @@
 </li>
       </ul></li>
       <li>
+    --context-include
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-context-include">gptme command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --context-mode
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-context-mode">gptme command line option</a>
+</li>
+      </ul></li>
+      <li>
     --cors-origin
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-server-cors-origin">gptme-server command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-cors-origin">gptme-server-serve command line option</a>
 </li>
       </ul></li>
       <li>
     --debug
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-server-debug">gptme-server command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-debug">gptme-server-serve command line option</a>
 </li>
       </ul></li>
       <li>
@@ -385,7 +481,7 @@
     --host
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-server-host">gptme-server command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-host">gptme-server-serve command line option</a>
 </li>
       </ul></li>
       <li>
@@ -399,9 +495,11 @@
     --limit
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-util-chats-ls-n">gptme-util-chats-ls command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-util-chats-list-n">gptme-util-chats-list command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-chats-search-n">gptme-util-chats-search command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-n">gptme-util-mcp-search command line option</a>
 </li>
       </ul></li>
       <li>
@@ -412,11 +510,18 @@
 </li>
         <li><a href="cli.html#cmdoption-gptme-eval-m">gptme-eval command line option</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-model">gptme-server command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-model">gptme-server-serve command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-llm-generate-m">gptme-util-llm-generate command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-tokens-count-m">gptme-util-tokens-count command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --multi-tool
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-multi-tool">gptme command line option</a>
 </li>
       </ul></li>
       <li>
@@ -434,10 +539,17 @@
 </li>
       </ul></li>
       <li>
+    --no-multi-tool
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-multi-tool">gptme command line option</a>
+</li>
+      </ul></li>
+      <li>
     --no-stream
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-no-stream">gptme command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-stream">gptme command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-llm-generate-stream">gptme-util-llm-generate command line option</a>
 </li>
@@ -447,6 +559,20 @@
 
       <ul>
         <li><a href="cli.html#cmdoption-gptme-n">gptme command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --output
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-server-openapi-o">gptme-server-openapi command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --output-schema
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-output-schema">gptme command line option</a>
 </li>
       </ul></li>
       <li>
@@ -460,9 +586,46 @@
     --port
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-server-port">gptme-server command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-port">gptme-server-serve command line option</a>
 </li>
       </ul></li>
+      <li>
+    --pricing
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-pricing">gptme-util-models-list command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --profile
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-profile">gptme command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --provider
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-provider">gptme-util-models-list command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --reasoning
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-reasoning">gptme-util-models-list command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --registry
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-r">gptme-util-mcp-search command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     --resume
 
@@ -478,9 +641,18 @@
 </li>
       </ul></li>
       <li>
+    --simple
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-simple">gptme-util-models-list command line option</a>
+</li>
+      </ul></li>
+      <li>
     --stream
 
       <ul>
+        <li><a href="cli.html#cmdoption-gptme-stream">gptme command line option</a>
+</li>
         <li><a href="cli.html#cmdoption-gptme-util-llm-generate-stream">gptme-util-llm-generate command line option</a>
 </li>
       </ul></li>
@@ -488,13 +660,11 @@
     --summarize
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-util-chats-ls-summarize">gptme-util-chats-ls command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-util-chats-list-summarize">gptme-util-chats-list command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-chats-search-summarize">gptme-util-chats-search command line option</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     --system
 
@@ -524,7 +694,14 @@
       <ul>
         <li><a href="cli.html#cmdoption-gptme-t">gptme command line option</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-tools">gptme-server command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-tools">gptme-server-serve command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --use-docker
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-eval-use-docker">gptme-eval command line option</a>
 </li>
       </ul></li>
       <li>
@@ -533,7 +710,7 @@
       <ul>
         <li><a href="cli.html#cmdoption-gptme-v">gptme command line option</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-v">gptme-server command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-v">gptme-server-serve command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-v">gptme-util command line option</a>
 </li>
@@ -543,6 +720,13 @@
 
       <ul>
         <li><a href="cli.html#cmdoption-gptme-version">gptme command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --vision
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-vision">gptme-util-models-list command line option</a>
 </li>
       </ul></li>
       <li>
@@ -585,9 +769,18 @@
       <ul>
         <li><a href="cli.html#cmdoption-gptme-n">gptme command line option</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-util-chats-ls-n">gptme-util-chats-ls command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-util-chats-list-n">gptme-util-chats-list command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-chats-search-n">gptme-util-chats-search command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-n">gptme-util-mcp-search command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -o
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-server-openapi-o">gptme-server-openapi command line option</a>
 </li>
       </ul></li>
       <li>
@@ -602,6 +795,8 @@
 
       <ul>
         <li><a href="cli.html#cmdoption-gptme-r">gptme command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-r">gptme-util-mcp-search command line option</a>
 </li>
       </ul></li>
       <li>
@@ -619,7 +814,7 @@
       <ul>
         <li><a href="cli.html#cmdoption-gptme-v">gptme command line option</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-v">gptme-server command line option</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-v">gptme-server-serve command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-v">gptme-util command line option</a>
 </li>
@@ -647,21 +842,53 @@
       <li><a href="api.html#gptme.codeblock.Codeblock.__init__">__init__() (gptme.codeblock.Codeblock method)</a>
 
       <ul>
+        <li><a href="api.html#gptme.config.AgentConfig.__init__">(gptme.config.AgentConfig method)</a>
+</li>
         <li><a href="api.html#gptme.config.ChatConfig.__init__">(gptme.config.ChatConfig method)</a>
 </li>
         <li><a href="api.html#gptme.config.Config.__init__">(gptme.config.Config method)</a>
+</li>
+        <li><a href="api.html#gptme.config.LessonsConfig.__init__">(gptme.config.LessonsConfig method)</a>
 </li>
         <li><a href="api.html#gptme.config.MCPConfig.__init__">(gptme.config.MCPConfig method)</a>
 </li>
         <li><a href="api.html#gptme.config.MCPServerConfig.__init__">(gptme.config.MCPServerConfig method)</a>
 </li>
+        <li><a href="api.html#gptme.config.PluginsConfig.__init__">(gptme.config.PluginsConfig method)</a>
+</li>
         <li><a href="api.html#gptme.config.ProjectConfig.__init__">(gptme.config.ProjectConfig method)</a>
+</li>
+        <li><a href="api.html#gptme.config.ProviderConfig.__init__">(gptme.config.ProviderConfig method)</a>
 </li>
         <li><a href="api.html#gptme.config.RagConfig.__init__">(gptme.config.RagConfig method)</a>
 </li>
         <li><a href="api.html#gptme.config.UserConfig.__init__">(gptme.config.UserConfig method)</a>
 </li>
         <li><a href="api.html#gptme.config.UserPromptConfig.__init__">(gptme.config.UserPromptConfig method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.CacheInvalidatedHook.__init__">(gptme.hooks.CacheInvalidatedHook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.FilePostSaveHook.__init__">(gptme.hooks.FilePostSaveHook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.FilePreSaveHook.__init__">(gptme.hooks.FilePreSaveHook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.GenerationPostHook.__init__">(gptme.hooks.GenerationPostHook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.GenerationPreHook.__init__">(gptme.hooks.GenerationPreHook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.Hook.__init__">(gptme.hooks.Hook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.HookRegistry.__init__">(gptme.hooks.HookRegistry method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.LoopContinueHook.__init__">(gptme.hooks.LoopContinueHook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.MessageProcessHook.__init__">(gptme.hooks.MessageProcessHook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.SessionEndHook.__init__">(gptme.hooks.SessionEndHook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.SessionStartHook.__init__">(gptme.hooks.SessionStartHook method)</a>
+</li>
+        <li><a href="hooks.html#gptme.hooks.ToolExecuteHook.__init__">(gptme.hooks.ToolExecuteHook method)</a>
 </li>
         <li><a href="api.html#gptme.logmanager.ConversationMeta.__init__">(gptme.logmanager.ConversationMeta method)</a>
 </li>
@@ -679,11 +906,21 @@
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hooks.html#gptme.hooks.HookType.__new__">__new__() (gptme.hooks.HookType method)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#gptme.config.ChatConfig.agent_config">agent_config (gptme.config.ChatConfig property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#gptme.config.AgentConfig">AgentConfig (class in gptme.config)</a>
+</li>
       <li><a href="api.html#gptme.logmanager.LogManager.append">append() (gptme.logmanager.LogManager method)</a>
 </li>
   </ul></td>
@@ -700,14 +937,22 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hooks.html#gptme.hooks.HookType.CACHE_INVALIDATED">CACHE_INVALIDATED (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.CacheInvalidatedHook">CacheInvalidatedHook (class in gptme.hooks)</a>
+</li>
       <li><a href="api.html#gptme.config.ChatConfig">ChatConfig (class in gptme.config)</a>
+</li>
+      <li><a href="api.html#gptme.logmanager.check_for_modifications">check_for_modifications() (in module gptme.logmanager)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.clear_hooks">clear_hooks() (in module gptme.hooks)</a>
 </li>
       <li><a href="api.html#gptme.codeblock.Codeblock">Codeblock (class in gptme.codeblock)</a>
 </li>
-      <li><a href="api.html#gptme.config.Config">Config (class in gptme.config)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#gptme.config.Config">Config (class in gptme.config)</a>
+</li>
       <li><a href="api.html#gptme.message.Message.content">content (gptme.message.Message attribute)</a>
 </li>
       <li><a href="api.html#gptme.logmanager.ConversationMeta">ConversationMeta (class in gptme.logmanager)</a>
@@ -716,14 +961,26 @@
 </li>
       <li><a href="api.html#gptme.server.create_app">create_app() (in module gptme.server)</a>
 </li>
+      <li><a href="api.html#gptme.logmanager.LogManager.create_view">create_view() (gptme.logmanager.LogManager method)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#gptme.logmanager.delete_conversation">delete_conversation() (in module gptme.logmanager)</a>
+</li>
       <li><a href="api.html#gptme.logmanager.LogManager.diff">diff() (gptme.logmanager.LogManager method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hooks.html#gptme.hooks.HookRegistry.disable_hook">disable_hook() (gptme.hooks.HookRegistry method)</a>
+
+      <ul>
+        <li><a href="hooks.html#gptme.hooks.disable_hook">(in module gptme.hooks)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -732,6 +989,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.logmanager.LogManager.edit">edit() (gptme.logmanager.LogManager method)</a>
 </li>
+      <li><a href="hooks.html#gptme.hooks.HookRegistry.enable_hook">enable_hook() (gptme.hooks.HookRegistry method)</a>
+
+      <ul>
+        <li><a href="hooks.html#gptme.hooks.enable_hook">(in module gptme.hooks)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hooks.html#gptme.hooks.Hook.enabled">enabled (gptme.hooks.Hook attribute)</a>
+</li>
       <li>
     EVAL_NAMES_OR_RESULT_FILES
 
@@ -739,8 +1006,6 @@
         <li><a href="cli.html#cmdoption-gptme-eval-arg-EVAL_NAMES_OR_RESULT_FILES">gptme-eval command line option</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.tools.ToolUse.execute">execute() (gptme.tools.ToolUse method)</a>
 </li>
   </ul></td>
@@ -748,6 +1013,36 @@
 
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_PATCH_AFTER">FILE_PATCH_AFTER (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_PATCH_BEFORE">FILE_PATCH_BEFORE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_PATCH_POST">FILE_PATCH_POST (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_PATCH_PRE">FILE_PATCH_PRE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_POST_PATCH">FILE_POST_PATCH (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_POST_SAVE">FILE_POST_SAVE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_PRE_PATCH">FILE_PRE_PATCH (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_PRE_SAVE">FILE_PRE_SAVE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_SAVE_AFTER">FILE_SAVE_AFTER (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_SAVE_BEFORE">FILE_SAVE_BEFORE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_SAVE_POST">FILE_SAVE_POST (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.FILE_SAVE_PRE">FILE_SAVE_PRE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.FilePostSaveHook">FilePostSaveHook (class in gptme.hooks)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.FilePreSaveHook">FilePreSaveHook (class in gptme.hooks)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.message.Message.files">files (gptme.message.Message attribute)</a>
 </li>
@@ -764,9 +1059,9 @@
       <ul>
         <li><a href="api.html#gptme.config.MCPConfig.from_dict">(gptme.config.MCPConfig class method)</a>
 </li>
+        <li><a href="api.html#gptme.config.ProjectConfig.from_dict">(gptme.config.ProjectConfig class method)</a>
+</li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.config.ChatConfig.from_logdir">from_logdir() (gptme.config.ChatConfig class method)</a>
 
       <ul>
@@ -778,6 +1073,8 @@
       <li><a href="api.html#gptme.config.Config.from_workspace">from_workspace() (gptme.config.Config class method)</a>
 </li>
       <li><a href="api.html#gptme.codeblock.Codeblock.from_xml">from_xml() (gptme.codeblock.Codeblock class method)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.Hook.func">func (gptme.hooks.Hook attribute)</a>
 </li>
       <li>
     FUNCTION_NAME
@@ -792,11 +1089,27 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hooks.html#gptme.hooks.HookType.GENERATION_INTERRUPT">GENERATION_INTERRUPT (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.GENERATION_POST">GENERATION_POST (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.GENERATION_PRE">GENERATION_PRE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.GenerationPostHook">GenerationPostHook (class in gptme.hooks)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.GenerationPreHook">GenerationPreHook (class in gptme.hooks)</a>
+</li>
+      <li><a href="api.html#gptme.config.ProviderConfig.get_api_key">get_api_key() (gptme.config.ProviderConfig method)</a>
+</li>
       <li><a href="api.html#gptme.message.Message.get_codeblocks">get_codeblocks() (gptme.message.Message method)</a>
 </li>
       <li><a href="api.html#gptme.config.get_config">get_config() (in module gptme.config)</a>
 </li>
+      <li><a href="api.html#gptme.logmanager.get_conversation_by_id">get_conversation_by_id() (in module gptme.logmanager)</a>
+</li>
       <li><a href="api.html#gptme.logmanager.get_conversations">get_conversations() (in module gptme.logmanager)</a>
+</li>
+      <li><a href="api.html#gptme.logmanager.LogManager.get_current_log">get_current_log() (gptme.logmanager.LogManager class method)</a>
 </li>
       <li><a href="api.html#gptme.tools.ToolSpec.get_doc">get_doc() (gptme.tools.ToolSpec method)</a>
 </li>
@@ -804,11 +1117,19 @@
 </li>
       <li><a href="api.html#gptme.config.Config.get_env_required">get_env_required() (gptme.config.Config method)</a>
 </li>
+      <li><a href="hooks.html#gptme.hooks.HookRegistry.get_hooks">get_hooks() (gptme.hooks.HookRegistry method)</a>
+
+      <ul>
+        <li><a href="hooks.html#gptme.hooks.get_hooks">(in module gptme.hooks)</a>
+</li>
+      </ul></li>
+      <li><a href="api.html#gptme.logmanager.LogManager.get_next_view_name">get_next_view_name() (gptme.logmanager.LogManager method)</a>
+</li>
       <li><a href="api.html#gptme.config.get_project_config">get_project_config() (in module gptme.config)</a>
 </li>
       <li><a href="prompts.html#gptme.prompts.get_prompt">get_prompt() (in module gptme.prompts)</a>
 </li>
-      <li><a href="prompts.html#gptme.prompts.get_tree_output">get_tree_output() (in module gptme.prompts)</a>
+      <li><a href="hooks.html#gptme.hooks.get_registry">get_registry() (in module gptme.hooks)</a>
 </li>
       <li><a href="api.html#gptme.logmanager.get_user_conversations">get_user_conversations() (in module gptme.logmanager)</a>
 </li>
@@ -816,19 +1137,35 @@
     gptme command line option
 
       <ul>
+        <li><a href="cli.html#cmdoption-gptme-agent-path">--agent-path</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-context-include">--context-include</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-context-mode">--context-mode</a>
+</li>
         <li><a href="cli.html#cmdoption-gptme-m">--model</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-multi-tool">--multi-tool</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-name">--name</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-y">--no-confirm</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-no-stream">--no-stream</a>
+        <li><a href="cli.html#cmdoption-gptme-multi-tool">--no-multi-tool</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-stream">--no-stream</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-n">--non-interactive</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-output-schema">--output-schema</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-profile">--profile</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-r">--resume</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-show-hidden">--show-hidden</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-stream">--stream</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-system">--system</a>
 </li>
@@ -871,6 +1208,8 @@
 </li>
         <li><a href="cli.html#cmdoption-gptme-eval-tool-format">--tool-format</a>
 </li>
+        <li><a href="cli.html#cmdoption-gptme-eval-use-docker">--use-docker</a>
+</li>
         <li><a href="cli.html#cmdoption-gptme-eval-m">-m</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-eval-p">-p</a>
@@ -881,24 +1220,33 @@
 </li>
       </ul></li>
       <li>
-    gptme-server command line option
+    gptme-server-openapi command line option
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-server-cors-origin">--cors-origin</a>
+        <li><a href="cli.html#cmdoption-gptme-server-openapi-o">--output</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-debug">--debug</a>
+        <li><a href="cli.html#cmdoption-gptme-server-openapi-o">-o</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-host">--host</a>
+      </ul></li>
+      <li>
+    gptme-server-serve command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-cors-origin">--cors-origin</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-model">--model</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-debug">--debug</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-port">--port</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-host">--host</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-tools">--tools</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-model">--model</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-v">--verbose</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-port">--port</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-server-v">-v</a>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-tools">--tools</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-v">--verbose</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-server-serve-v">-v</a>
 </li>
       </ul></li>
       <li>
@@ -913,21 +1261,21 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    gptme-util-chats-ls command line option
+    gptme-util-chats-list command line option
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-util-chats-ls-n">--limit</a>
+        <li><a href="cli.html#cmdoption-gptme-util-chats-list-n">--limit</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-util-chats-ls-summarize">--summarize</a>
+        <li><a href="cli.html#cmdoption-gptme-util-chats-list-summarize">--summarize</a>
 </li>
-        <li><a href="cli.html#cmdoption-gptme-util-chats-ls-n">-n</a>
+        <li><a href="cli.html#cmdoption-gptme-util-chats-list-n">-n</a>
 </li>
       </ul></li>
       <li>
     gptme-util-chats-read command line option
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-util-chats-read-arg-NAME">NAME</a>
+        <li><a href="cli.html#cmdoption-gptme-util-chats-read-arg-ID">ID</a>
 </li>
       </ul></li>
       <li>
@@ -972,6 +1320,64 @@
         <li><a href="cli.html#cmdoption-gptme-util-llm-generate-m">-m</a>
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-llm-generate-arg-PROMPT">PROMPT</a>
+</li>
+      </ul></li>
+      <li>
+    gptme-util-mcp-info command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-info-arg-SERVER_NAME">SERVER_NAME</a>
+</li>
+      </ul></li>
+      <li>
+    gptme-util-mcp-search command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-n">--limit</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-r">--registry</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-n">-n</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-r">-r</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-arg-QUERY">QUERY</a>
+</li>
+      </ul></li>
+      <li>
+    gptme-util-mcp-test command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-test-arg-SERVER_NAME">SERVER_NAME</a>
+</li>
+      </ul></li>
+      <li>
+    gptme-util-models-info command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-models-info-arg-MODEL_NAME">MODEL_NAME</a>
+</li>
+      </ul></li>
+      <li>
+    gptme-util-models-list command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-pricing">--pricing</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-provider">--provider</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-reasoning">--reasoning</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-simple">--simple</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-models-list-vision">--vision</a>
+</li>
+      </ul></li>
+      <li>
+    gptme-util-prompts-expand command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-prompts-expand-arg-PROMPT">PROMPT</a>
 </li>
       </ul></li>
       <li>
@@ -1035,6 +1441,13 @@
 </li>
       </ul></li>
       <li>
+    gptme.hooks
+
+      <ul>
+        <li><a href="hooks.html#module-gptme.hooks">module</a>
+</li>
+      </ul></li>
+      <li>
     gptme.logmanager
 
       <ul>
@@ -1070,19 +1483,44 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.message.Message.hide">hide (gptme.message.Message attribute)</a>
 </li>
+      <li><a href="hooks.html#gptme.hooks.Hook">Hook (class in gptme.hooks)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.Hook.hook_type">hook_type (gptme.hooks.Hook attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hooks.html#gptme.hooks.HookRegistry">HookRegistry (class in gptme.hooks)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookRegistry.hooks">hooks (gptme.hooks.HookRegistry attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType">HookType (class in gptme.hooks)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    ID
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-chats-read-arg-ID">gptme-util-chats-read command line option</a>
+</li>
+      </ul></li>
+      <li><a href="hooks.html#gptme.hooks.init_hooks">init_hooks() (in module gptme.hooks)</a>
+</li>
       <li><a href="api.html#gptme.tools.ToolSpec.is_available">is_available (gptme.tools.ToolSpec property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#gptme.config.MCPServerConfig.is_http">is_http (gptme.config.MCPServerConfig property)</a>
+</li>
       <li><a href="api.html#gptme.tools.ToolSpec.is_runnable">is_runnable (gptme.tools.ToolSpec property)</a>
 </li>
       <li><a href="api.html#gptme.tools.ToolUse.iter_from_content">iter_from_content() (gptme.tools.ToolUse class method)</a>
+</li>
+      <li><a href="api.html#gptme.codeblock.Codeblock.iter_from_markdown">iter_from_markdown() (gptme.codeblock.Codeblock class method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1090,6 +1528,8 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#gptme.config.LessonsConfig">LessonsConfig (class in gptme.config)</a>
+</li>
       <li><a href="api.html#gptme.logmanager.list_conversations">list_conversations() (in module gptme.logmanager)</a>
 </li>
       <li><a href="api.html#gptme.logmanager.LogManager.load">load() (gptme.logmanager.LogManager class method)</a>
@@ -1104,20 +1544,47 @@
 </li>
       <li><a href="api.html#gptme.logmanager.LogManager">LogManager (class in gptme.logmanager)</a>
 </li>
+      <li><a href="hooks.html#gptme.hooks.HookType.LOOP_CONTINUE">LOOP_CONTINUE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.LoopContinueHook">LoopContinueHook (class in gptme.hooks)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#gptme.logmanager.LogManager.master_log">master_log (gptme.logmanager.LogManager property)</a>
+</li>
       <li><a href="api.html#gptme.config.Config.mcp">mcp (gptme.config.Config property)</a>
 </li>
       <li><a href="api.html#gptme.config.MCPConfig">MCPConfig (class in gptme.config)</a>
 </li>
       <li><a href="api.html#gptme.config.MCPServerConfig">MCPServerConfig (class in gptme.config)</a>
 </li>
+      <li><a href="api.html#gptme.config.ProjectConfig.merge">merge() (gptme.config.ProjectConfig method)</a>
+</li>
       <li><a href="api.html#gptme.message.Message">Message (class in gptme.message)</a>
 </li>
+      <li><a href="hooks.html#gptme.hooks.HookType.MESSAGE_POST_PROCESS">MESSAGE_POST_PROCESS (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.MESSAGE_PRE_PROCESS">MESSAGE_PRE_PROCESS (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.MESSAGE_TRANSFORM">MESSAGE_TRANSFORM (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.MessageProcessHook">MessageProcessHook (class in gptme.hooks)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#gptme.message.Message.metadata">metadata (gptme.message.Message attribute)</a>
+</li>
+      <li>
+    MODEL_NAME
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-models-info-arg-MODEL_NAME">gptme-util-models-info command line option</a>
+</li>
+      </ul></li>
       <li>
     module
 
@@ -1125,6 +1592,8 @@
         <li><a href="api.html#module-gptme.codeblock">gptme.codeblock</a>
 </li>
         <li><a href="api.html#module-gptme.config">gptme.config</a>
+</li>
+        <li><a href="hooks.html#module-gptme.hooks">gptme.hooks</a>
 </li>
         <li><a href="api.html#module-gptme.logmanager">gptme.logmanager</a>
 </li>
@@ -1141,11 +1610,10 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    NAME
+      <li><a href="hooks.html#gptme.hooks.Hook.name">name (gptme.hooks.Hook attribute)</a>
 
       <ul>
-        <li><a href="cli.html#cmdoption-gptme-util-chats-read-arg-NAME">gptme-util-chats-read command line option</a>
+        <li><a href="api.html#gptme.logmanager.LogManager.name">(gptme.logmanager.LogManager property)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1165,7 +1633,11 @@
       </ul></li>
       <li><a href="api.html#gptme.message.Message.pinned">pinned (gptme.message.Message attribute)</a>
 </li>
+      <li><a href="api.html#gptme.config.PluginsConfig">PluginsConfig (class in gptme.config)</a>
+</li>
       <li><a href="api.html#gptme.logmanager.prepare_messages">prepare_messages() (in module gptme.logmanager)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.Hook.priority">priority (gptme.hooks.Hook attribute)</a>
 </li>
       <li><a href="api.html#gptme.config.ProjectConfig">ProjectConfig (class in gptme.config)</a>
 </li>
@@ -1175,11 +1647,15 @@
       <ul>
         <li><a href="cli.html#cmdoption-gptme-util-llm-generate-arg-PROMPT">gptme-util-llm-generate command line option</a>
 </li>
-      </ul></li>
-      <li><a href="prompts.html#gptme.prompts.prompt_full">prompt_full() (in module gptme.prompts)</a>
+        <li><a href="cli.html#cmdoption-gptme-util-prompts-expand-arg-PROMPT">gptme-util-prompts-expand command line option</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="prompts.html#gptme.prompts.prompt_chat_history">prompt_chat_history() (in module gptme.prompts)</a>
+</li>
+      <li><a href="prompts.html#gptme.prompts.prompt_full">prompt_full() (in module gptme.prompts)</a>
+</li>
       <li><a href="prompts.html#gptme.prompts.prompt_gptme">prompt_gptme() (in module gptme.prompts)</a>
 </li>
       <li><a href="prompts.html#gptme.prompts.prompt_project">prompt_project() (in module gptme.prompts)</a>
@@ -1201,6 +1677,8 @@
         <li><a href="cli.html#cmdoption-gptme-arg-PROMPTS">gptme command line option</a>
 </li>
       </ul></li>
+      <li><a href="api.html#gptme.config.ProviderConfig">ProviderConfig (class in gptme.config)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -1215,6 +1693,8 @@
 </li>
         <li><a href="cli.html#cmdoption-gptme-util-context-retrieve-arg-QUERY">gptme-util-context-retrieve command line option</a>
 </li>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-search-arg-QUERY">gptme-util-mcp-search command line option</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -1228,11 +1708,17 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.config.RagConfig">RagConfig (class in gptme.config)</a>
 </li>
-      <li><a href="api.html#gptme.config.reload_config">reload_config() (in module gptme.config)</a>
+      <li><a href="hooks.html#gptme.hooks.HookRegistry.register">register() (gptme.hooks.HookRegistry method)</a>
+</li>
+      <li><a href="api.html#gptme.tools.ToolSpec.register_commands">register_commands() (gptme.tools.ToolSpec method)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.register_hook">register_hook() (in module gptme.hooks)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#gptme.logmanager.LogManager.rename">rename() (gptme.logmanager.LogManager method)</a>
+      <li><a href="api.html#gptme.tools.ToolSpec.register_hooks">register_hooks() (gptme.tools.ToolSpec method)</a>
+</li>
+      <li><a href="api.html#gptme.config.reload_config">reload_config() (in module gptme.config)</a>
 </li>
       <li><a href="api.html#gptme.message.Message.replace">replace() (gptme.message.Message method)</a>
 </li>
@@ -1246,6 +1732,23 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.config.ChatConfig.save">save() (gptme.config.ChatConfig method)</a>
 </li>
+      <li>
+    SERVER_NAME
+
+      <ul>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-info-arg-SERVER_NAME">gptme-util-mcp-info command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-gptme-util-mcp-test-arg-SERVER_NAME">gptme-util-mcp-test command line option</a>
+</li>
+      </ul></li>
+      <li><a href="hooks.html#gptme.hooks.HookType.SESSION_END">SESSION_END (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.SESSION_START">SESSION_START (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.SessionEndHook">SessionEndHook (class in gptme.hooks)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.SessionStartHook">SessionStartHook (class in gptme.hooks)</a>
+</li>
       <li><a href="api.html#gptme.config.set_config">set_config() (in module gptme.config)</a>
 </li>
   </ul></td>
@@ -1253,6 +1756,20 @@
       <li><a href="api.html#gptme.config.set_config_from_workspace">set_config_from_workspace() (in module gptme.config)</a>
 </li>
       <li><a href="api.html#gptme.config.set_config_value">set_config_value() (in module gptme.config)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.set_registry">set_registry() (in module gptme.hooks)</a>
+</li>
+      <li><a href="api.html#gptme.config.setup_config_from_cli">setup_config_from_cli() (in module gptme.config)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.STEP_POST">STEP_POST (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.STEP_PRE">STEP_PRE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.StopPropagation">StopPropagation (class in gptme.hooks)</a>
+</li>
+      <li><a href="api.html#gptme.logmanager.LogManager.switch_to_master">switch_to_master() (gptme.logmanager.LogManager method)</a>
+</li>
+      <li><a href="api.html#gptme.logmanager.LogManager.switch_view">switch_view() (gptme.logmanager.LogManager method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1272,16 +1789,30 @@
       <li><a href="api.html#gptme.config.ChatConfig.to_dict">to_dict() (gptme.config.ChatConfig method)</a>
 
       <ul>
+        <li><a href="api.html#gptme.config.ProjectConfig.to_dict">(gptme.config.ProjectConfig method)</a>
+</li>
         <li><a href="api.html#gptme.logmanager.LogManager.to_dict">(gptme.logmanager.LogManager method)</a>
 </li>
         <li><a href="api.html#gptme.message.Message.to_dict">(gptme.message.Message method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.message.Message.to_toml">to_toml() (gptme.message.Message method)</a>
 </li>
-      <li><a href="api.html#gptme.message.Message.to_xml">to_xml() (gptme.message.Message method)</a>
+      <li><a href="api.html#gptme.codeblock.Codeblock.to_xml">to_xml() (gptme.codeblock.Codeblock method)</a>
+
+      <ul>
+        <li><a href="api.html#gptme.message.Message.to_xml">(gptme.message.Message method)</a>
+</li>
+      </ul></li>
+      <li><a href="hooks.html#gptme.hooks.HookType.TOOL_EXECUTE_AFTER">TOOL_EXECUTE_AFTER (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.TOOL_EXECUTE_BEFORE">TOOL_EXECUTE_BEFORE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.TOOL_EXECUTE_POST">TOOL_EXECUTE_POST (gptme.hooks.HookType attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hooks.html#gptme.hooks.HookType.TOOL_EXECUTE_PRE">TOOL_EXECUTE_PRE (gptme.hooks.HookType attribute)</a>
 </li>
       <li>
     TOOL_NAME
@@ -1292,9 +1823,25 @@
         <li><a href="cli.html#cmdoption-gptme-util-tools-info-arg-TOOL_NAME">gptme-util-tools-info command line option</a>
 </li>
       </ul></li>
+      <li><a href="hooks.html#gptme.hooks.HookType.TOOL_POST_EXECUTE">TOOL_POST_EXECUTE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.TOOL_PRE_EXECUTE">TOOL_PRE_EXECUTE (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.TOOL_TRANSFORM">TOOL_TRANSFORM (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.ToolExecuteHook">ToolExecuteHook (class in gptme.hooks)</a>
+</li>
       <li><a href="api.html#gptme.tools.ToolSpec">ToolSpec (class in gptme.tools)</a>
 </li>
       <li><a href="api.html#gptme.tools.ToolUse">ToolUse (class in gptme.tools)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookRegistry.trigger">trigger() (gptme.hooks.HookRegistry method)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.trigger_hook">trigger_hook() (in module gptme.hooks)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.TURN_POST">TURN_POST (gptme.hooks.HookType attribute)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.HookType.TURN_PRE">TURN_PRE (gptme.hooks.HookType attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1304,8 +1851,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#gptme.logmanager.LogManager.undo">undo() (gptme.logmanager.LogManager method)</a>
 </li>
+      <li><a href="hooks.html#gptme.hooks.HookRegistry.unregister">unregister() (gptme.hooks.HookRegistry method)</a>
+</li>
+      <li><a href="hooks.html#gptme.hooks.unregister_hook">unregister_hook() (in module gptme.hooks)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="prompts.html#gptme.prompts.use_chat_history_context">use_chat_history_context() (in module gptme.prompts)</a>
+</li>
       <li><a href="api.html#gptme.config.UserConfig">UserConfig (class in gptme.config)</a>
 </li>
       <li><a href="api.html#gptme.config.UserPromptConfig">UserPromptConfig (class in gptme.config)</a>
@@ -1363,7 +1916,7 @@ By Erik Bjäreholt
 
   <p class="copyright">
     
-      © Copyright 2025, Erik Bjäreholt.
+      © Copyright 2026, Erik Bjäreholt.
       <br/>
     
   </p>

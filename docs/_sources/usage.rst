@@ -13,28 +13,27 @@ This will show you a list of past chats, allowing you to select one or start a n
 
 To get inspiration for your first prompt, see the :doc:`examples`.
 
-
 .. contents:: Table of Contents
    :depth: 5
    :local:
    :backlinks: none
 
+.. _usage-commands:
+
 Commands
 --------
 
-.. TODO: use autodoc from source, like cli reference
+gptme provides slash-commands for various actions within the chat.
+For the complete reference, see :doc:`commands`.
 
-You can use these slash-commands for various actions within the chat:
+Common commands:
 
-- ``/undo`` - Undo the last action
+- ``/help`` - Show available commands
+- ``/undo [n]`` - Undo the last n actions
 - ``/log`` - Show the conversation log
-- ``/tools`` - Show available tools
 - ``/edit`` - Edit the conversation in your editor
-- ``/rename`` - Rename the conversation
-- ``/fork`` - Create a copy of the conversation
-- ``/summarize`` - Summarize the conversation
-- ``/replay`` - Re-execute codeblocks in the conversation
-- ``/help`` - Show help message
+- ``/model`` - List or switch models
+- ``/tokens`` - Show token usage and costs
 - ``/exit`` - Exit the program
 
 Interfaces
@@ -42,7 +41,8 @@ Interfaces
 
 Besides the CLI, gptme can be used through:
 
-- :ref:`server:web ui` - A web-based interface
+- :ref:`server:gptme-webui` - A web-based interface
+- A `desktop app <https://github.com/gptme/gptme-tauri>`_ (WIP)
 - :doc:`bot` - GitHub bot integration
 
 For more detailed information about specific features, check out:
@@ -54,6 +54,8 @@ For more detailed information about specific features, check out:
 
 Features
 --------
+
+Here is a very quick overview of the main features of gptme.
 
 .. rubric:: Tools
 
@@ -73,10 +75,10 @@ You can ask the assistant to create new files or modify existing ones:
 
 .. chat::
 
-   User: create a new file named life.py implementing the game of life
+   User: implement game of life in life.py
 
    Assistant: Certainly! I'll create a new file named `life.py` implementing Conway's Game of Life. This implementation will use NumPy for efficient array operations and Matplotlib for visualization. Here's the code:
-   ```life.py
+   ```save life.py
    import numpy as np
    import matplotlib.pyplot as plt
    from matplotlib.animation import FuncAnimation
@@ -92,11 +94,11 @@ You can start chats and request changes directly from the command line. The cont
 
 .. code-block:: bash
 
-   gptme 'make improvements to life.py so that dead cells fade out over time'
+   gptme 'make improvements to life.py so dead cells fade out over time'
 
 .. chat::
 
-   User: make improvements to life.py so that dead cells fade out over time
+   User: make improvements to life.py so dead cells fade out over time
    ```life.py
    ...
    ```

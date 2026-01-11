@@ -3,11 +3,18 @@ gptme documentation
 
 Welcome to the documentation for ``gptme``!
 
-``gptme`` is a tiny command-line application that allows you to interact with AI agent equipped with powerful local tools, acting as a copilot for your computer, via the terminal. It can execute python and bash, edit local files, search and browse the web.
+``gptme`` is a personal AI assistant and agent platform that runs in your terminal and browser, equipped with powerful tools to execute code, edit files, browse the web, and more - acting as an intelligent copilot for your computer. The core components include:
 
-To get an understanding about how it works, the easiest way is to try it out yourself by following the :doc:`getting-started` guide. If you want to see some examples of what you can do with it, check out the :doc:`examples`, :doc:`demos`, and :doc:`tools`.
+- **gptme CLI**: The main :doc:`command-line interface <cli>` for terminal-based interactions
+- **gptme-server**: A :doc:`server component <server>` for running gptme as a service
+- **gptme-webui**: A :doc:`web interface <server>` for browser-based interactions
+- **gptme-agent-template**: A template for creating custom :doc:`AI agents <agents>`
 
-It is designed to be easy to use and extend, and can be used as a library or a standalone application. It also has a tiny :ref:`server:Web UI` with basic functionality.
+The system can execute python and bash, edit local files, search and browse the web, and much more through its rich set of :doc:`built-in tools <tools>` and extensible :doc:`tool system <custom_tool>`. You can see what's possible in the :doc:`examples` and :doc:`demos`, from creating web apps and games to analyzing data and automating workflows.
+
+**Getting Started:** To begin using gptme, follow the :doc:`getting-started` guide, set up your preferred :doc:`LLM provider <providers>`, and customize your :doc:`configuration <config>` as needed.
+
+The system is designed to be easy to use and extend, and can be used as a library, standalone application, or web service. For detailed usage patterns and features, see the :doc:`usage` guide.
 
 See the `README <https://github.com/gptme/gptme/blob/master/README.md>`_ file for more general information about the project.
 
@@ -19,15 +26,23 @@ See the `README <https://github.com/gptme/gptme/blob/master/README.md>`_ file fo
    :caption: User Guide
 
    getting-started
+   system-dependencies
    usage
+   concepts
+   glossary
    examples
    tools
+   lessons
+   skills/README
    config
    providers
    agents
    server
    mcp
+   acp
+   commands
    cli
+   security
 
 .. toctree::
    :maxdepth: 2
@@ -40,6 +55,8 @@ See the `README <https://github.com/gptme/gptme/blob/master/README.md>`_ file fo
    bot
    finetuning
    custom_tool
+   hooks
+   plugins
    api
 
 .. toctree::
@@ -49,7 +66,7 @@ See the `README <https://github.com/gptme/gptme/blob/master/README.md>`_ file fo
    alternatives
    arewetiny
    timeline
-   Changelog <https://github.com/gptme/gptme/releases>
+   changelog
 
 .. toctree::
    :caption: External
@@ -67,3 +84,4 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+* `llms.txt <llms.txt>`_ and `llms-full.txt <llms-full.txt>`_
