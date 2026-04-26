@@ -7,7 +7,7 @@ Commands are entered by typing a forward slash (``/``) followed by the command n
 For CLI arguments and options, see the :doc:`cli` reference.
 
 .. contents:: Table of Contents
-   :depth: 2
+   :depth: 3
    :local:
    :backlinks: none
 
@@ -125,7 +125,7 @@ Useful for:
    /replay              # Interactive: choose last, all, or tool name
    /replay last         # Replay only the last assistant message with tool uses
    /replay all          # Replay all assistant messages
-   /replay todowrite    # Replay all operations for a specific tool
+   /replay todo    # Replay all operations for a specific tool
 
 /export
 ^^^^^^^
@@ -194,11 +194,25 @@ Tools & Information
 /tools
 ^^^^^^
 
-List all available tools with their descriptions and token usage.
+Manage and inspect tools in the current session.
 
 .. code-block:: text
 
-   /tools
+   /tools              # List loaded tools (with hint about unloaded ones)
+   /tools --all        # Show all available tools, including unloaded
+   /tools <name>       # Show detailed info for a specific tool
+   /tools load <name>  # Load a tool into the current conversation
+
+The ``/tools load`` subcommand lets you add tools mid-conversation without restarting.
+When a tool is loaded, its system prompt is injected as a message so the assistant
+becomes immediately aware of the new capability.
+
+.. code-block:: text
+
+   /tools load browser    # Enable the browser tool mid-session
+   /tools load screenshot # Add screenshot capability
+
+Tab completion is available for tool names.
 
 /help
 ^^^^^

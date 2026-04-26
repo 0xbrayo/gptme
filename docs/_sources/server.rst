@@ -26,7 +26,7 @@ For more CLI options, see the :ref:`CLI reference <cli:gptme-server>`.
 gptme-webui: Modern Web Interface
 ---------------------------------
 
-The primary web interface is `gptme-webui <https://github.com/gptme/gptme-webui>`_: a modern, feature-rich application that provides a complete gptme experience in your browser.
+The primary web interface is `gptme-webui <https://github.com/gptme/gptme/tree/master/webui>`_: a modern, feature-rich application that provides a complete gptme experience in your browser. (Originally a `standalone repo <https://github.com/gptme/gptme-webui>`_, now merged into the main gptme repository.)
 
 **Try it now:**
 
@@ -44,7 +44,7 @@ The primary web interface is `gptme-webui <https://github.com/gptme/gptme-webui>
 - Create your own persistent `agents`
 
 **Local Installation:**
-For self-hosting and local development, see the `gptme-webui README <https://github.com/gptme/gptme-webui>`_.
+For self-hosting and local development, see the `gptme-webui README <https://github.com/gptme/gptme/tree/master/webui>`_.
 
 To use the server with a locally hosted gptme-webui, configure the CORS origin when starting the server:
 
@@ -116,10 +116,27 @@ You can enable the ``computer`` tool locally on Linux systems, though this is no
 
 .. code-block:: bash
 
-   # Enable computer tool (disabled by default for security)
-   gptme -t computer
+   # Enable computer tool in addition to default tools
+   gptme --tools +computer
 
 Set an appropriate screen resolution for your vision model before use.
+
+For long-running visual workflows, prefer a specialized subagent profile to keep
+parent context smaller:
+
+.. code-block:: python
+
+   # Desktop interaction (mouse, keyboard, screenshots)
+   subagent(
+       "computer-use",
+       "Click the Submit button, wait for the modal, and screenshot the result",
+   )
+
+   # Web browsing and testing
+   subagent(
+       "browser-use",
+       "Open localhost:5173, capture a screenshot, and report UI issues",
+   )
 
 REST API
 --------

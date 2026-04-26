@@ -3,15 +3,50 @@ Lessons
 
 The lesson system provides contextual guidance and best practices that are automatically included in conversations when relevant. Lessons help users follow recommended patterns and avoid common pitfalls.
 
+The lesson system is the **core knowledge system** in gptme. :doc:`skills` are a special case of lessons that follow Anthropic's folder-style format.
+
 Overview
 --------
 
-Lessons are markdown files with YAML frontmatter that specify when they should be included. The system automatically:
+**Lessons** are markdown files with YAML frontmatter that specify when they should be included. The system automatically:
 
 - Indexes lessons from configured directories
-- Matches lessons based on keywords and tools used
+- Matches lessons based on **keywords**, **patterns**, and **tools** used
 - Includes relevant lessons in conversation context
 - Adapts inclusion behavior for interactive vs autonomous modes
+
+Lessons vs Skills
+~~~~~~~~~~~~~~~~~
+
+The lesson system supports two formats:
+
+**Lessons (Core Format)**:
+
+- Auto-loading: By keywords, patterns, and tools
+- Frontmatter: ``match: {keywords: [...], tools: [...]}``
+- Best for: Context-aware guidance that appears automatically
+- Example: "Git best practices" appears when discussing commits
+
+**Skills (Anthropic Format)**:
+
+- Auto-loading: By name only (when skill name appears in message)
+- Frontmatter: ``name:``, ``description:``
+- Best for: Explicit knowledge bundles, portable across tools
+- Example: "python-repl" skill loads when you mention "python repl"
+
++-------------------+------------------------------------+------------------------------------+
+| Feature           | Lessons (Core)                     | Skills (Anthropic)                 |
++===================+====================================+====================================+
+| Auto-loading      | ✅ Keywords, patterns, tools       | ⚠️ Name only (in message)          |
++-------------------+------------------------------------+------------------------------------+
+| Frontmatter       | ``match: {keywords: [...]}``       | ``name:``, ``description:``        |
++-------------------+------------------------------------+------------------------------------+
+| Best for          | Context-aware guidance             | Explicit knowledge bundles         |
++-------------------+------------------------------------+------------------------------------+
+| Bundled scripts   | No                                 | Yes (optional)                     |
++-------------------+------------------------------------+------------------------------------+
+
+See :doc:`skills` for details on the skills format.
 
 How Lessons Work
 ----------------
@@ -21,8 +56,10 @@ When you start a conversation, gptme:
 1. Scans configured lesson directories
 2. Indexes lessons with their metadata
 3. Monitors the conversation for keywords and tool usage
-4. Automatically includes matching lessons
-5. Limits the number of included lessons to preserve context
+4. Automatically includes all matching lessons (no per-turn limit)
+5. Applies a session-wide limit (default: 20) to prevent context bloat
+
+When exiting, gptme displays a summary of lessons used in the session.
 
 Lessons appear in the conversation context but are hidden by default in the interface. Use ``/log`` to see which lessons are included.
 
@@ -118,11 +155,29 @@ Create a ``.md`` file in your lessons directory with:
 Lesson Directories
 ~~~~~~~~~~~~~~~~~~
 
-Lessons are loaded from:
+Lessons are loaded from the following directories (if they exist):
 
-1. ``~/.config/gptme/lessons/`` - User-specific lessons
-2. ``./lessons/`` - Project-specific lessons (if present)
-3. Package lessons (examples in gptme)
+**User-level:**
+
+1. ``~/.config/gptme/lessons/`` - gptme native lessons
+2. ``~/.agents/lessons/`` - Cross-platform standard
+
+**Workspace-level:**
+
+3. ``./lessons/`` - Project-specific lessons
+4. ``./.gptme/lessons/`` - Hidden project-local lessons
+
+**Other:**
+
+5. ``./.cursor/`` - Cursor rules (auto-translated to keywords)
+6. Directories configured in ``gptme.toml``
+7. Plugin lessons (auto-discovered from plugin paths)
+
+The ``~/.agents/`` paths provide cross-platform compatibility with other AI tools.
+
+.. note::
+
+   For skill directories (Anthropic SKILL.md format), see :doc:`skills`.
 
 Organize lessons by category:
 
@@ -168,8 +223,9 @@ Control lesson behavior with these variables:
     # Enable/disable auto-include (default: true)
     export GPTME_LESSONS_AUTO_INCLUDE=false
 
-    # Maximum lessons to include (default: 5)
-    export GPTME_LESSONS_MAX_INCLUDED=3
+    # Maximum lessons per session (default: 20)
+    # This is a session-wide limit - once reached, no more lessons are included
+    export GPTME_LESSONS_MAX_SESSION=20
 
     # Refresh lessons each message (default: false)
     export GPTME_LESSONS_REFRESH=true
@@ -302,8 +358,9 @@ If lessons aren't being included:
 
 1. Check indexing: Look for "Indexed n lessons" in logs
 2. Verify keywords: Use ``/lesson search`` to test matching
-3. Check limits: Ensure ``GPTME_LESSONS_MAX_INCLUDED`` isn't too low
+3. Check limits: Ensure ``GPTME_LESSONS_MAX_SESSION`` isn't too low (default: 20)
 4. Verify format: Ensure YAML frontmatter is valid
+5. Session limit: If resuming a conversation, the session limit may already be reached
 
 Debug Lesson Matching
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -319,6 +376,7 @@ This shows which lessons match and why.
 See Also
 --------
 
+- :doc:`skills` - Skills format (Anthropic-style knowledge bundles)
 - :doc:`tools` - Available tools that lessons can reference
 - :doc:`config` - Configuration options
 - :doc:`custom_tool` - Creating custom tools with lessons

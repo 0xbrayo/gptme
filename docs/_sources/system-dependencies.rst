@@ -1,10 +1,95 @@
 System Dependencies
 ===================
 
-Some gptme features require additional non-Python dependencies. These are optional and only needed for specific tools.
+Some gptme features require additional dependencies. These are optional and only needed for specific features.
 
-Optional Dependencies
----------------------
+Python Extras
+-------------
+
+gptme has optional Python dependencies that can be installed using extras:
+
+.. code-block:: bash
+
+    # Install with specific extras
+    pipx install "gptme[server,browser]"
+
+    # Install with all optional dependencies
+    pipx install "gptme[all]"
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Extra
+     - Description
+   * - ``server``
+     - Flask server for web UI and REST API
+   * - ``browser``
+     - Playwright for web browsing and automation
+   * - ``datascience``
+     - matplotlib, pandas, numpy for data analysis
+   * - ``telemetry``
+     - OpenTelemetry instrumentation for observability
+   * - ``all``
+     - All optional dependencies
+
+Installing from Source
+----------------------
+
+To install the latest development version from git:
+
+.. code-block:: bash
+
+    # Using pipx
+    pipx install "git+https://github.com/gptme/gptme.git"
+
+    # Using uv
+    uv tool install "git+https://github.com/gptme/gptme.git"
+
+    # With extras
+    pipx install "git+https://github.com/gptme/gptme.git[server,browser]"
+
+If you have cloned the repository locally and want an editable install (changes to code take effect immediately):
+
+.. code-block:: bash
+
+    # Clone if you haven't already
+    git clone https://github.com/gptme/gptme.git
+    cd gptme
+
+    # Using pipx (editable)
+    pipx install -e .
+
+    # Using uv (editable)
+    uv tool install -e .
+
+    # Editable with extras
+    pipx install -e ".[server,browser]"
+
+Recommended
+-----------
+
+These packages enhance gptme's capabilities and are recommended for the best experience:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 40 40
+
+   * - Dependency
+     - Purpose
+     - Installation
+   * - ``shellcheck``
+     - Shell script linting (used by pre-commit)
+     - ``apt install shellcheck`` (Debian/Ubuntu) or ``brew install shellcheck`` (macOS)
+   * - ``tmux``
+     - Terminal multiplexer for long-running commands
+     - ``apt install tmux`` (Debian/Ubuntu) or ``brew install tmux`` (macOS)
+   * - ``gh``
+     - GitHub CLI for the gh tool
+     - See `GitHub CLI installation <https://cli.github.com/>`_
+
+Optional System Packages
+------------------------
 
 .. list-table::
    :header-rows: 1
@@ -19,12 +104,6 @@ Optional Dependencies
    * - ``lynx``
      - Text-based web browser (alternative to playwright)
      - ``apt install lynx`` (Debian/Ubuntu) or ``brew install lynx`` (macOS)
-   * - ``tmux``
-     - Terminal multiplexer for long-running commands
-     - ``apt install tmux`` (Debian/Ubuntu) or ``brew install tmux`` (macOS)
-   * - ``gh``
-     - GitHub CLI for the gh tool
-     - See `GitHub CLI installation <https://cli.github.com/>`_
    * - ``wl-clipboard``
      - Wayland clipboard support
      - ``apt install wl-clipboard`` (Debian/Ubuntu)
@@ -44,16 +123,6 @@ lynx
 ~~~~
 
 An alternative to playwright for web browsing. Uses less resources and works in text mode, but has limited JavaScript support.
-
-tmux
-~~~~
-
-Required for the tmux tool which enables running long-running or interactive commands in persistent terminal sessions.
-
-gh (GitHub CLI)
-~~~~~~~~~~~~~~~
-
-The GitHub CLI is needed for the gh tool to interact with GitHub repositories, issues, and pull requests. Installation instructions vary by platform - see the `official documentation <https://cli.github.com/>`_.
 
 wl-clipboard
 ~~~~~~~~~~~~
